@@ -1,0 +1,27 @@
+extends layout
+
+block content
+    .container
+        h1 Logs
+          h2=`User: ${dbs_counts.users} | Logs: ${dbs_counts.logs} | Courses: ${dbs_counts.courses} | Ratings: ${dbs_counts.ratings}`
+
+        if data.length > 0
+          each d in data
+            
+            if !d.isHidden
+              .card.mb-1
+                .card-header= `${d.happenAt}`
+                .card-body
+                  .row
+                    .col
+                      h5.card-title= `${d.userID}`
+
+                  p.card-text= d.errMsg
+                      
+                  small.text-muted.float-end= `${d.time}`
+        else
+          p 目前還沒有Log喔～
+
+block scripts
+  script(src="//cdn.jsdelivr.net/npm/sweetalert2@10")
+  script(src='/js/rating.js' async)

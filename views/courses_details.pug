@@ -1,0 +1,129 @@
+extends layout
+
+block content
+  .container
+    h1= `${teacherAndSubject.subject} - ${teacherAndSubject.teacher}`
+      button#leaveRating.btn.btn-primary.text-light.float-end(type='button' data-bs-toggle='modal' data-bs-target='#')
+        | 登入以評分
+    h3 平均得分
+    .row.text-center
+      if rating.length > 0
+        - let obj = {"豐富度": rating[0].learning.toFixed(1), "作業量": rating[0].homework.toFixed(1), "推薦度": rating[0].recommendation.toFixed(1)}
+        each val, key in obj
+          .col-4
+            p.text-center 
+              = key
+              br
+              = val+' '
+              i.fa.fa-star
+      else
+        p 尚未有評分 
+        a(href='#myModal' data-bs-target='#myModal' data-bs-toggle='modal') 快來評分吧
+    h3 評論
+    if !isAuthenticated
+      .alert.alert-warning 如需留下評論，請先登入。
+    if data.length > 0
+      each d in data
+        if !d.isHidden
+          .card.mb-1
+            .card-body
+              .row
+                .col
+                  h5.card-title= d.name
+                .col  
+                  .float-end
+                    if d.userID == me
+                      a#editComment.text-light.btn.btn-secondary.me-1(href='#editModal' data-bs-target='#editModal' data-bs-toggle='modal') 編輯
+                      a#deleteComment.btn.btn-danger 刪除
+              .row
+                - let obj = {"豐富度": d.rateLearning, "作業量": d.rateHomework, "推薦度": d.rateRecommendation}
+                each val, key in obj
+                  .col-4
+                    .row
+                      .col-sm-12.col-md-4.text-center
+                        p= key
+                      .col-sm-12.col-md-8.text-center.text-md-start
+                        while val > 0
+                          i.fa.fa-star
+                          - val--
+              p.card-text= d.content
+                  
+              small.text-muted.float-end= `${d.modifiedAt.getFullYear()}-${d.modifiedAt.getMonth()}-${d.modifiedAt.getDate()}`
+    else
+      p 尚未有任何評論
+      a(href='#myModal' data-bs-target='#myModal' data-bs-toggle='modal') 快來評分吧
+
+  // The Modal
+  #myModal.modal
+    .modal-dialog
+      .modal-content
+        // Modal Header
+        form(action=`/courses/${teacherAndSubject.teacher}/${teacherAndSubject.subject}` method='post')
+          .modal-header
+            select.form-select(name="name" aria-label='Default select example')
+              if department
+                option(value=department selected)= department
+              option(value='銘傳大學') 匿名
+            button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+            // Modal body
+          .modal-body
+            - let name_list = ['豐富度','作業量','推薦度']
+            each name in name_list
+              .mb-3
+                label= name
+                .form-control
+                  -let i=1
+                  while i<=5
+                    .form-check.form-check-inline
+                      input.form-check-input(type='radio' name=name value=i required)
+                      label.form-check-label(for='inlineRadio1')
+                      - let j
+                      - for(j=0;j<i;j++)
+                        i.fa.fa-star
+                      - i++
+            .form-group
+              label(for='comment') 評論:
+              textarea#comment.form-control(rows='5' name='comment' placeholder="寫寫你的感受（可選）")
+          // Modal footer
+          .modal-footer
+            button.btn.btn-primary(type='submit') 送出
+  
+  // The Modal
+  #editModal.modal
+    .modal-dialog
+      .modal-content
+        // Modal Header
+        form(action=`/courses/${teacherAndSubject.teacher}/${teacherAndSubject.subject}/edit` method='post')
+          .modal-header
+            select.form-select(name="name")
+              if department
+                option(value=department selected)= department
+              option(value='銘傳大學') 匿名
+            button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+            // Modal body
+          .modal-body
+            //- let name_list = ['豐富度','作業量','推薦度']
+            each name in name_list
+              .mb-3
+                label= name
+                .form-control
+                  -let i=1
+                  while i<=5
+                    .form-check.form-check-inline
+                      input.form-check-input(type='radio' name=name value=i required)
+                      label.form-check-label(for='inlineRadio1')
+                      - let j
+                      - for(j=0;j<i;j++)
+                        i.fa.fa-star
+                      - i++
+            .form-group
+              label(for='comment') 評論:
+              textarea#commentText.form-control(rows='5' name='comment' placeholder="寫寫你的感受（可選）")
+              //-input#userID(type='hidden' name='userID' value=me)
+          // Modal footer
+          .modal-footer
+            button#editSubmit.btn.btn-primary.text-light(type='submit') 送出
+
+block scripts
+  script(src="//cdn.jsdelivr.net/npm/sweetalert2@10")
+  script(src='/js/rating.js' async)

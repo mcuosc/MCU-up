@@ -1,0 +1,15 @@
+body {
+  font-family: 'Noto Sans TC', var(--bs-font-sans-serif);
+}
+
+.focus:hover, .focus:focus{
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+
+.focus {
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.card > .card-body > h6 > div > span.badge {
+  border-radius: 0%;
+}

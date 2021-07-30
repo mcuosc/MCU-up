@@ -1,0 +1,50 @@
+extends layout
+
+block content
+  .container-fluid.bg-light.text-center.p-3.mb-3
+    p.display-3 MCU-up
+    hr
+    h1 銘傳金手指 3.0
+    p.m-2
+      a.btn.btn-primary.text-light(href='/courses') 開始使用
+  .container
+    .row
+      .col
+        p 從前有個銘傳金手指網站，它是一個匯集大家對銘傳各個課程評價的平台，當時大家對那個網站的評價也不錯。只是隨著負責維護的學長畢業，銘傳金手指也暫時沉寂了一段時間。
+    .row
+      .col
+        p 後來同一位學長以 「SuanKho」 課程評論系統重新上線，這個被視為銘傳金手指的 2.0 版本。後續因為無人接力維護，網站再次下線。
+    .row
+      .col
+        p 在接下來的這段時間，大家只能依賴網路上零散的資源，來查詢某個課程的評價好壞。
+    .row
+      .col
+        p 直至目前，在聯繫到之前的學長取得舊評價資料，以及努力的開發之下，MCU-up，也就是銘傳金手指 3.0 版誕生了。
+
+    .row
+      .col-12.col-md-4.mb-2
+        .card.h-100.border-secondary
+          .card-body.text-secondary
+            h1.card-title.text-center
+              i.fas.fa-angle-double-right
+            h4.card-title.text-center 便利
+            p.card-text 本網站將原本校方課程查詢系統提供的資訊重新編排，方便搜尋與查看評價。
+            
+      .col-12.col-md-4.mb-2
+        .card.h-100.border-primary
+          .card-body.text-primary
+            h1.card-title.text-center
+              i.fas.fa-lock
+            h4.card-title.text-center 安全
+            p.card-text 
+              | 本網站無須另外註冊，僅透過 Google 登入學校信箱來確認您的身分是否為銘傳學生。
+              br
+              | (僅評價課程需要登入，其他功能皆無須登入即可使用)
+            
+      .col-12.col-md-4.mb-2
+        .card.h-100.border-secondary
+          .card-body.text-secondary
+            h1.card-title.text-center
+              i.fas.fa-file-code
+            h4.card-title.text-center 開源
+            p.card-text 網站本體的程式架構以 MIT 授權條款公開於 Github，所有人皆可檢視、修改。

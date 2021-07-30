@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  .container
+    h1 錯誤
+    if err
+      h2= err
+    else
+      h2 找不到你所請求的路徑@w@

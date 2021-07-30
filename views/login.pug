@@ -1,0 +1,23 @@
+extends layout
+
+block content
+
+  .container.mt-5
+    if err
+      .alert.alert-danger= err
+    h1 登入帳號
+    .row.justify-content-center
+      .col-sm-10.col-md-6
+        .card
+          .card-body
+            .d-grid.gap-2
+              p.text-center 請使用學校帳號登入 
+              a.btn.btn-social.btn-google.text-center(href='/auth/google' role='button')
+                i.fab.fa-google
+                |             Sign In with Google
+              p.text-center
+                small
+                  | 登入即表示您同意我們的
+                  a(href='/privacy.html' target="_blank") 隱私權條款
+                  | 與
+                  a(href='/disclaimer.html' target="_blank") 免責聲明

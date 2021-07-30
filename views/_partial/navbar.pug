@@ -1,0 +1,29 @@
+nav.navbar.navbar-expand-lg.navbar-dark.bg-primary.mb-2
+  .container-fluid
+    a.navbar-brand(href='/')
+      | MCU-up
+      |  
+      small.badge.rounded-pill.bg-secondary Beta
+    button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarNav.collapse.navbar-collapse
+      ul.navbar-nav
+        li.nav-item
+          a.nav-link(aria-current='page' href='/courses') 課程
+        li.nav-item
+          a.nav-link.disabled(href='/arrange') 模擬排課
+        li.nav-item
+          a.nav-link(href='//forms.gle/9zNafkf9hC5AWB7v6' target='_blank')
+            | 意見回饋
+            | 
+            i.fas.fa-external-link-alt
+
+      ul.navbar-nav.flex-wrap.ms-md-auto
+        if isAuthenticated
+          li.nav-item
+            a.nav-link(href="/auth/profile") 我的評分 
+          li.nav-item
+            a.nav-link(href='/auth/logout') 登出
+        else
+          li.nav-item
+            a.nav-link(href='/auth/login') 登入

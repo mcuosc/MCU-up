@@ -1,0 +1,11 @@
+*.csv
+*.json
+*.txt
+.env
+!package.json
+!package-lock.json
+node_modules/
+.ipynb_checkpoints/
+.DS_Store
+__pycache__/
+tempCodeRunnerFile.py

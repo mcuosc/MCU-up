@@ -1,0 +1,70 @@
+extends layout
+
+block content
+  .container-fluid.bg-light.text-center.p-3.mb-3
+    p.display-3 MCU-up
+    hr
+    h1 銘傳金手指 3.0
+    
+  .container
+    .row
+      .col
+        h2 最近熱門科目
+    
+    - docs = [{"科目":"基本網頁設計","教師":"開源社","comments":10,"stars":4.5,"time":{"weekday":"一","session":70}},{"科目":"進階網頁設計","教師":"開源社","comments":7,"stars":4.5,"time":{"weekday":"一","session":80}},{"科目":"社聚","教師":"開源社","comments":7,"stars":4.4,"time":{"weekday":"一","session":90}},{"科目":"伺服器建置","教師":"開源社","comments":7,"stars":4.3,"time":{"weekday":"一","session":99}}]
+    .row
+      each course in docs
+        .col-sm-12.col-md-4.col-lg-3.mb-3
+          .card
+            .card-body
+              a.stretched-link(href=`#`)
+              h5.card-title
+                = course.科目
+                small.float-end
+                  i.fa.fa-comments
+                  = course.comments
+                  | 
+                  i.fa.fa-star
+                  = course.stars
+              h6.card-subtitle.mb-2= course.教師
+              span.badge.bg-primary= course.time.weekday
+              span.badge.bg-secondary= course.time.session
+        
+            
+  .container
+    .row
+      .col
+        h2 高評價科目
+    
+    .row
+      .col-sm-12.col-md-4.col-lg-3.mb-3
+        .card
+          .card-body
+            a.stretched-link(href=`#`)
+            h5.card-title
+              | 前端開發入門
+              small.float-end
+                i.fa.fa-comments
+                | 99
+                | 
+                i.fa.fa-star
+                | 5.0
+                
+            h6.card-subtitle.mb-2 開源社
+            span.badge.bg-primary 一
+            span.badge.bg-secondary 70
+      .col-sm-12.col-md-4.col-lg-3.mb-3
+        .card
+          .card-body
+            a.stretched-link(href=`#`)
+            h5.card-title
+              | 後端開發入門
+              small.float-end
+                i.fa.fa-comments
+                | 18
+                | 
+                i.fa.fa-star
+                | 4.8
+            h6.card-subtitle.mb-2 開源社
+            span.badge.bg-primary 一
+            span.badge.bg-secondary 80

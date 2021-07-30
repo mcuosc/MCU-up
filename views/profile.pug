@@ -1,0 +1,87 @@
+extends layout
+
+block content
+    .container
+        h1 我的評分
+        
+        if data.length > 0
+          each d in data
+            
+            if !d.isHidden
+              .card.mb-1
+                .card-header= `${d.subject} - ${d.teacher}`
+                .card-body
+                  .row
+                    .col
+                      h5.card-title= `${d.name}`
+                    .col  
+                      .float-end
+                        .dropdown
+                          button#more.btn(type="button" data-bs-toggle="dropdown")
+                            i.fas.fa-ellipsis-v.text-secondary
+                          ul.dropdown-menu.dropdown-menu-end
+                            li
+                              button.dropdown-item.me-1(name='editComment' href=`/courses/${d.teacher}/${d.subject}` data-bs-target='#editModal' data-bs-toggle='modal') 編輯
+                            li
+                              button.dropdown-item.text-danger(name='deleteComment' href=`/courses/${d.teacher}/${d.subject}/delete`) 刪除
+
+
+                        //-button.btn.btn-secondary.me-1(name='editComment' href=`/courses/${d.teacher}/${d.subject}` data-bs-target='#editModal' data-bs-toggle='modal') 編輯
+                        //-button.btn.btn-danger(name='deleteComment' href=`/courses/${d.teacher}/${d.subject}/delete`) 刪除
+                  .row
+                    - let obj = {"豐富度": d.rateLearning, "作業量": d.rateHomework, "推薦度": d.rateRecommendation}
+                    each val, key in obj
+                      .col-4
+                        .row
+                          .col-sm-12.col-md-4.text-center
+                            p= key
+                          .col-sm-12.col-md-8.text-center.text-md-start
+                            while val > 0
+                              i.fa.fa-star
+                              - val--
+                  p.card-text= d.content
+                      
+                  small.text-muted.float-end= `${d.modifiedAt.getFullYear()}-${d.modifiedAt.getMonth()}-${d.modifiedAt.getDate()}`
+          
+          #editModal.modal
+            .modal-dialog
+              .modal-content
+                // Modal Header
+                form#editForm(action=`#` method='post')
+                  .modal-header
+                    select.form-select(name="name")
+                      if department
+                        option(value=department selected)= department
+                      option(value='銘傳大學') 匿名
+                    button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+                    // Modal body
+                  .modal-body
+                    - let name_list = ['豐富度','作業量','推薦度']
+                    each name in name_list
+                      .mb-3
+                        label= name
+                        .form-control
+                          -let i=1
+                          while i<=5
+                            .form-check.form-check-inline
+                              input.form-check-input(type='radio' name=name value=i required)
+                              label.form-check-label(for='inlineRadio1')
+                              - let j
+                              - for(j=0;j<i;j++)
+                                i.fa.fa-star
+                              - i++
+                    .form-group
+                      label(for='comment') 評論:
+                      textarea#commentText.form-control(rows='5' name='comment' placeholder="寫寫你的感受（可選）")
+                      //-input#userID(type='hidden' name='userID' value=me)
+                  // Modal footer
+                  .modal-footer
+                    button#editSubmit.btn.btn-primary(type='submit') 送出
+          
+        else
+          p 尚未有任何評論
+
+
+block scripts
+  script(src="//cdn.jsdelivr.net/npm/sweetalert2@10")
+  script(src='/js/rating.js' async)

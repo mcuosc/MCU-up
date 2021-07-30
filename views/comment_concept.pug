@@ -1,0 +1,51 @@
+extends layout
+
+block content
+  .container
+    h1= `前端開發入門 - 開源社`
+    h3 平均得分
+    .row.text-center
+      - let obj = {"豐富度": 5.0, "作業量": 5.0, "推薦度": 5.0}
+      each val, key in obj
+        .col-4
+          p.text-center 
+            = key
+            br
+            = val+' '
+            i.fa.fa-star
+    h3 評論
+    - let texts = ["讚","推"," ","必參加"]
+    each text in texts
+      .card.mb-1
+        .card-body
+          .row
+            .col
+              h5.card-title= `社員`
+            .col  
+              .float-end
+                  a#editComment.btn.text-secondary.me-1
+                    i.fa.fa-pencil-alt
+                    |
+                    | 編輯
+                  a#deleteComment.btn.text-danger
+                    i.fa.fa-trash
+                    |
+                    | 刪除
+          .row
+            - let obj = {"豐富度": 5, "作業量": 5, "推薦度": 5}
+            each val, key in obj
+              .col-4
+                .row
+                  .col-sm-12.col-md-4.text-center
+                    p= key
+                  .col-sm-12.col-md-8.text-center.text-md-start
+                    while val > 0
+                      i.fa.fa-star
+                      - val--
+          p.card-text= text  
+          a.card-link.text-secondary
+            i.fa.fa-thumbs-up
+          |
+          a.card-link.text-secondary
+            i.fa.fa-thumbs-down
+          small.text-muted.float-end= `2021-04-11`

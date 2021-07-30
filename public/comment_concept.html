@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MCU-Up</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/bootstrap-social.css">
+    <link rel="stylesheet" href="/css/signin.css">
+    <link rel="stylesheet" href="/css/styles.css" media="print" onload="this.media='all'">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-2">
+      <div class="container-fluid"><a class="navbar-brand" href="/">MCU-up</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="/courses">課程</a></li>
+            <li class="nav-item"><a class="nav-link" href="/arrange">模擬排課</a></li>
+          </ul>
+          <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
+            <li class="nav-item"><a class="nav-link" href="/auth/login">登入</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <h1>前端開發入門 - 開源社</h1>
+      <h3>平均得分</h3>
+      <div class="row text-center">
+        <div class="col-4">
+          <p class="text-center"> 豐富度<br>5 <i class="fa fa-star"></i>
+          </p>
+        </div>
+        <div class="col-4">
+          <p class="text-center"> 作業量<br>5 <i class="fa fa-star"></i>
+          </p>
+        </div>
+        <div class="col-4">
+          <p class="text-center"> 推薦度<br>5 <i class="fa fa-star"></i>
+          </p>
+        </div>
+      </div>
+      <h3>評論</h3>
+      <div class="card mb-1">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title">社員</h5>
+            </div>
+            <div class="col"> 
+              <div class="float-end"><a class="btn text-secondary me-1" id="editComment"><i class="fa fa-pencil-alt"></i>
+                  編輯</a><a class="btn text-danger" id="deleteComment"><i class="fa fa-trash"></i>
+                  刪除</a></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4">
+              <div class="row">
+                <div class="col-sm-12 col-md-4 text-center">
+                  <p>豐富度</p>
+                </div>
+                <div class="col-sm-12 col-md-8 text-center text-md-start"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="row">
+                <div class="col-sm-12 col-md-4 text-center">
+                  <p>作業量</p>
+                </div>
+                <div class="col-sm-12 col-md-8 text-center text-md-start"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="row">
+                <div class="col-sm-12 col-md-4 text-center">
+                  <p>推薦度</p>
+                </div>
+                <div class="col-sm-12 col-md-8 text-center text-md-start"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="card-text">讚</p><a class="card-link text-secondary"><i class="fa fa-thumbs-up"></i></a><a class="card-link text-secondary"><i class="fa fa-thumbs-down"></i></a><small class="text-muted float-end">2021-04-11</small>
+        </div>
+      </div>
+      <div class="card mb-1">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title">社員</h5>
+            </div>
+            <div class="col"> 
+              <div class="float-end"><a class="btn text-secondary me-1" id="editComment"><i class="fa fa-pencil-alt"></i>
+                  編輯</a><a class="btn text-danger" id="deleteComment"><i class="fa fa-trash"></i>
+                  刪除</a></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4">
+              <div class="row">
+                <div class="col-sm-12 col-md-4 text-center">
+                  <p>豐富度</p>
+                </div>
+                <div class="col-sm-12 col-md-8 text-center text-md-start"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="row">
+                <div class="col-sm-12 col-md-4 text-center">
+                  <p>作業量</p>
+                </div>
+                <div class="col-sm-12 col-md-8 text-center text-md-start"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="row">
+                <div class="col-sm-12 col-md-4 text-center">
+                  <p>推薦度</p>
+                </div>
+                <div class="col-sm-12 col-md-8 text-center text-md-start"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="card-text">推</p><a class="card-link text-secondary"><i class="fa fa-thumbs-up"></i></a><a class="card-link text-secondary"><i class="fa fa-thumbs-down"></i></a><small class="text-muted float-end">2021-04-11</small>
+        </div>
+      </div>
+      <div class="card mb-1">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title">社員</h5>
+            </div>
+            <div class="col"> 
+              <div class="float-end"><a class="btn text-secondary me-1" id="editComment"><i class="fa fa-pencil-alt"></i>
+                  編輯</a><a class="btn text-danger" id="deleteComment"><i class="fa fa-trash"></i>
+                  刪除</a></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4">
+              <div class="row">
+                <div class="col-sm-12 col-md-4 text-center">
+                  <p>豐富度</p>
+                </div>
+                <div class="col-sm-12 col-md-8 text-center text-md-start"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="row">
+                <div class="col-sm-12 col-md-4 text-center">
+                  <p>作業量</p>
+                </div>
+                <div class="col-sm-12 col-md-8 text-center text-md-start"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="row">
+                <div class="col-sm-12 col-md-4 text-center">
+                  <p>推薦度</p>
+                </div>
+                <div class="col-sm-12 col-md-8 text-center text-md-start"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="card-text"> </p><a class="card-link text-secondary"><i class="fa fa-thumbs-up"></i></a><a class="card-link text-secondary"><i class="fa fa-thumbs-down"></i></a><small class="text-muted float-end">2021-04-11</small>
+        </div>
+      </div>
+      <div class="card mb-1">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title">社員</h5>
+            </div>
+            <div class="col"> 
+              <div class="float-end"><a class="btn text-secondary me-1" id="editComment"><i class="fa fa-pencil-alt"></i>
+                  編輯</a><a class="btn text-danger" id="deleteComment"><i class="fa fa-trash"></i>
+                  刪除</a></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4">
+              <div class="row">
+                <div class="col-sm-12 col-md-4 text-center">
+                  <p>豐富度</p>
+                </div>
+                <div class="col-sm-12 col-md-8 text-center text-md-start"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="row">
+                <div class="col-sm-12 col-md-4 text-center">
+                  <p>作業量</p>
+                </div>
+                <div class="col-sm-12 col-md-8 text-center text-md-start"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="row">
+                <div class="col-sm-12 col-md-4 text-center">
+                  <p>推薦度</p>
+                </div>
+                <div class="col-sm-12 col-md-8 text-center text-md-start"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="card-text">必參加</p><a class="card-link text-secondary"><i class="fa fa-thumbs-up"></i></a><a class="card-link text-secondary"><i class="fa fa-thumbs-down"></i></a><small class="text-muted float-end">2021-04-11</small>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <footer class="bg-light p-4 text-secondary mt-1">
+      <div class="container">
+        <div class="row"> 
+          <div class="col"> 
+            <ul class="ps-0">
+              <li class="d-inline-block me-3"><a href="#">Github</a></li>
+              <li class="d-inline-block me-3"><a href="#">Facebook </a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="row"> 
+          <div class="col">
+            <p>本平臺尚處在早期測試階段，如遇到任何問題請回報給開發團隊了解</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
