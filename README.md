@@ -1,15 +1,7 @@
----
-title: 'MCU-up'
-disqus: hackmd
----
-
 MCU-up
 ===
+此專案為[MCU-up-beta](https://github.com/mcuosc/MCU-up-beta) 的穩定版本，如需使用請參考 [LICENSE](https://github.com/mcuosc/MCU-up/blob/main/LICENSE)
 * 完整開發文件請見 [docs](docs/src/SUMMARY.md)
-
-## 目錄
-
-[TOC]
 
 ## 事前準備
 
