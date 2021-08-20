@@ -17,11 +17,11 @@ module.exports = class Auth {
   profile(req,res){
     if (req.isAuthenticated()) {
       getComment({$regex:".*"}, {$regex:".*"}, req.session.passport.user).then(result=>{
-        res.render("profile", {isAuthenticated:req.isAuthenticated(), data:result.data});
+        res.render("profile", {me:req.session.passport.user, data:result.data});
       }, (err) => {
         console.log(err);
       })
-      
+
     } else {
       res.redirect("/auth/login");
     }

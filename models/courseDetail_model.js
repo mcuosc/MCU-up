@@ -30,21 +30,29 @@ module.exports = function getCoursesInfo(query) {
       }).then((ratings) => {
         CourseRate.find(
           { teacher: query.teacher, subject: query.subject, isHidden:false },//{userID:true},
-          (err, found) => {
-            if(err){
-              console.log(err);
-              result.status = "Fail to find data.";
-              return result;
-            }
-            
-            result = {
-              teacherAndSubject: query,
-              rating: ratings,
-              data:found
-            };
-            
-            resolve(result);
-        })
+          )
+        .sort({modifiedAt: -1 })
+        .exec((err, found) => {
+          if(err){
+            console.log(err);
+            result.status = "Fail to find data.";
+            return result;
+          }
+          let hashtag=""
+
+          if (found.length>0) {
+            hashtag = found[0].hashtag
+
+          }
+          result = {
+            teacherAndSubject: query,
+            rating: ratings,
+            data:found,
+            hashtag:hashtag
+          };
+
+          resolve(result);
+      })
       })
 
   });

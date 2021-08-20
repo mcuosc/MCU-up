@@ -25,11 +25,12 @@ function inWhitelist(name) {
 /* Routers */
 const courseRouter = require("./routes/course");
 const authRouter = require("./routes/auth");
+const exampleRouter = require("./routes/example");
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const app = express();
-
+app.enable("trust proxy"); // ensure the proxy is enabled
 app.use(helmet({
   contentSecurityPolicy: false/*{
       reportOnly: true
@@ -41,7 +42,7 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    store: MongoStore.create({ mongoUrl: 'mongodb://localhost/MCU_CourseDB' })
+    store: MongoStore.create({ mongoUrl: process.env.DATABASE_LINK })
   })
 );
 app.use(passport.initialize());
@@ -82,7 +83,7 @@ passport.use(
 );
 
 /* Database Connection Initializaion*/
-mongoose.connect("mongodb://localhost:27017/MCU_CourseDB", {
+mongoose.connect(process.env.DATABASE_LINK, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -105,7 +106,7 @@ app.use(function(req,res,next) {
 app.get("/", (req, res) => {
   res.render("home",  {isAuthenticated:req.isAuthenticated()});
 });
-
+app.use('/test',exampleRouter);
 app.use('/auth',authRouter);
 app.use('/courses',courseRouter);
 
@@ -114,5 +115,6 @@ app.use(function(req, res, next) {
 });
 
 app.listen(port, () => {
-  console.log("server starting on port:" + port);
+  console.log("using database: " + process.env.DATABASE_LINK);
+  console.log("server starting on port: " + port);
 });

@@ -1,0 +1,99 @@
+// The Modal
+#myModal.modal
+  .modal-dialog
+    .modal-content
+      // Modal Header
+      form#newForm(action=`#` method='post')
+        .modal-header
+          select.form-select(name="name" aria-label='Default select example')
+            if department
+              option(value=department selected)= department
+            option(value='銘傳大學') 匿名
+          button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+          // Modal body
+        .modal-body
+          .mb-3
+            .form-text 評論發布後將無法修改顯示名稱(除非刪除)
+          - let name_list = ['豐富度','推薦度','作業量']
+          each name in name_list
+            .mb-3
+              label= name
+              .form-control
+                -let i=1
+                while i<=5
+                  .form-check.form-check-inline
+                    input.form-check-input(type='radio' name=name value=i required)
+                    label.form-check-label(for='inlineRadio1')
+                    - let j
+                    - for(j=0;j<i;j++)
+                      i.fa.fa-star
+                    - i++
+          //.form-group
+            label(for='hashtag') Tags
+            textarea#comment.form-control(rows='5' name='hashtag' placeholder="寫寫你的tag")
+          .form-group
+            label(for='comment') 評論:
+            textarea#comment.form-control(rows='5' name='comment' placeholder="寫寫你的感受（可選）")
+        // Modal footer
+        .modal-footer
+          button.btn.btn-primary.text-light(type='submit') 送出
+
+// The Modal
+#editModal.modal
+  .modal-dialog
+    .modal-content
+      // Modal Header
+      form#editForm(action=`#` method='post')
+        .modal-header
+          select.form-select(name="name" disabled readonly)
+            if department
+              option(value=department selected)= department
+            option(value='銘傳大學') 匿名
+          button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+          // Modal body
+        .modal-body
+          .mb-3
+            .form-text 如需變更該則顯示名稱，請刪除重發
+          //- let name_list = ['豐富度','作業量','推薦度']
+          each name in name_list
+            .mb-3
+              label= name
+              .form-control
+                -let i=1
+                while i<=5
+                  .form-check.form-check-inline
+                    input.form-check-input(type='radio' name=name value=i required)
+                    label.form-check-label(for='inlineRadio1')
+                    - let j
+                    - for(j=0;j<i;j++)
+                      i.fa.fa-star
+                    - i++
+          
+          //-each name in name_list
+            #star_list.mb-3
+              label=name
+              .form-control
+                .stars
+                  label.rate
+                    input(type='radio' name=name value=1)
+                    i.far.fa-star.star.one-star
+                  label.rate
+                    input(type='radio' name=name value=2)
+                    i.far.fa-star.star.two-star
+                  label.rate
+                    input(type='radio' name=name value=3)
+                    i.far.fa-star.star.three-star
+                  label.rate
+                    input(type='radio' name=name value=4)
+                    i.far.fa-star.star.four-star
+                  label.rate
+                    input(type='radio' name=name value=5)
+                    i.far.fa-star.star.five-star
+          
+          .form-group
+            label(for='comment') 評論:
+            textarea#commentText.form-control(rows='5' name='comment' placeholder="寫寫你的感受（可選）")
+            //-input#userID(type='hidden' name='userID' value=me)
+        // Modal footer
+        .modal-footer
+          button#editSubmit.btn.btn-primary.text-light(type='submit') 送出

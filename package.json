@@ -1,6 +1,6 @@
 {
   "engines": {
-    "node": ">=14.0.0"
+    "node": "14.x"
   },
   "name": "mcu-up",
   "version": "1.0.0",
@@ -11,6 +11,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
     "dev": "nodemon app.js"
   },
   "repository": {
@@ -18,8 +19,8 @@
     "url": "git+https://github.com/mcuosc/mcu-up.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "MCUOSC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mcuosc/mcu-up/issues"
   },

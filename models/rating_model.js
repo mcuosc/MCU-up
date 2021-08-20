@@ -11,7 +11,8 @@ const courseRating = mongoose.model("Rating",{
   rateRecommendation: Number,
   createdAt : Date,
   modifiedAt : Date,
-  isHidden: Boolean
+  isHidden: Boolean,
+  hashtag: []
 });
 
 module.exports = courseRating;

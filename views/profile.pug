@@ -9,6 +9,10 @@ block content
             
             if !d.isHidden
               .card.mb-1
+                .card-header
+                  a.text-secondary.text-decoration-none(href=`/courses/${d.teacher}/${d.subject}`)=  `${d.subject} - ${d.teacher}`
+                include _partial/comment_card.pug
+              //-.card.mb-1
                 .card-header= `${d.subject} - ${d.teacher}`
                 .card-body
                   .row
@@ -41,9 +45,10 @@ block content
                               - val--
                   p.card-text= d.content
                       
-                  small.text-muted.float-end= `${d.modifiedAt.getFullYear()}-${d.modifiedAt.getMonth()}-${d.modifiedAt.getDate()}`
+                  small.text-muted.float-end= `${d.modifiedAt.getFullYear()}-${d.modifiedAt.getMonth()+1}-${d.modifiedAt.getDate()}`
           
-          #editModal.modal
+          include _partial/comment_modals.pug
+          //-#editModal.modal
             .modal-dialog
               .modal-content
                 // Modal Header

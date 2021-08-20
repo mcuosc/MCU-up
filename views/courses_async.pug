@@ -1,12 +1,15 @@
 extends layout
 
 block content
-  .container.bg-light.p-2.my-2
-    form(action=`/courses/async` method='get')
-      .input-group
-        input#search.form-control(type='text' name='search' value=search placeholder='任課教師/科目名稱')
-        input.btn.btn-primary(type='submit' value='送出查詢')
-  
+
+  #searchBar.container.bg-light.p-2.my-2.sticky-top
+    .row.justify-content-center
+      .col-12.col-sm-8.col-md-6
+        form(action=`/courses/async` method='get')
+          .input-group
+            input#search.form-control(type='text' name='search' value=search placeholder='任課教師/科目名稱/課程代碼')
+            input.text-light.btn.btn-primary(type='submit' value='送出查詢')
+
   .container
     .row
       #js-infinite-wrap
@@ -55,3 +58,14 @@ block content
 
 block scripts
   script(src="/js/scroll_load_courses.js")
+  script.
+    let prevScrollpos = $(window).scrollTop();
+    window.onscroll = function() {
+    let currentScrollPos = $(window).scrollTop();
+    if (prevScrollpos > currentScrollPos) {
+      $("#searchBar").css('top',"60px");
+    } else {
+      $("#searchBar").css('top',"0");
+    }
+    prevScrollpos = currentScrollPos;
+    }

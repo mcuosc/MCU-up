@@ -9,7 +9,7 @@ const courseSchema = new mongoose.Schema({
   任課教師: {},
   上課日期_節次: [],
   年級: String,
-  "教室【校區】": String,
+  學校: {},
   選別: String,
   學分: String,
   類別: String,

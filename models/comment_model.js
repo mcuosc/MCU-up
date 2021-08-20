@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 var ObjectId = require("mongodb").ObjectID;
 const CourseRate = require("./rating_model");
-const fs = require("fs");
-const path = require("path");
+
 const rawdata = require(__dirname + "/../data/class_ids_names.json");
 const CourseUser = require("./user_model");
 
@@ -69,7 +68,6 @@ module.exports = function uploadComments(req) {
                 errMsg: "number range error",
                 time: Date.now(),
               });
-
             CourseRate.insertMany(
               {
                 content: req.body.comment,
@@ -83,6 +81,7 @@ module.exports = function uploadComments(req) {
                 createdAt: Date.now(),
                 modifiedAt: Date.now(),
                 isHidden: false,
+                //hashtag: JSON.parse("["+req.body.hashtag+"]")
               },
               (err) => {
                 if (!err) {

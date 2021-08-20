@@ -1,5 +1,15 @@
+---
+title: 'MCU-up'
+disqus: hackmd
+---
+
 MCU-up
 ===
+* 完整開發文件請見 [docs](docs/src/SUMMARY.md)
+
+## 目錄
+
+[TOC]
 
 ## 事前準備
 
@@ -19,7 +29,5 @@ MCU-up
 4. 執行npm install，有特別要額外安裝的module:body-parser跟nodemon(nodemon需要下npm install -g nodemon )
 5. 如要執行本專案在小黑下nodemon app.js(預設port端3000)
 
-## SCREENSHOT
-![](img/1.JPG)
-![](img/2.JPG)
-![](img/3.JPG)
+
+###### tags: `mcu-up` `Documentation`

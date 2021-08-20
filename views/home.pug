@@ -3,10 +3,11 @@ extends layout
 block content
   .container-fluid.bg-light.text-center.p-3.mb-3
     p.display-3 MCU-up
+    //-img.img-fluid(src='/img/logo.svg')
     hr
     h1 銘傳金手指 3.0
     p.m-2
-      a.btn.btn-primary.text-light(href='/courses') 開始使用
+      a.btn.btn-primary.text-light(href='/courses/async') 開始使用
   .container
     .row
       .col
@@ -31,8 +32,8 @@ block content
             p.card-text 本網站將原本校方課程查詢系統提供的資訊重新編排，方便搜尋與查看評價。
             
       .col-12.col-md-4.mb-2
-        .card.h-100.border-primary
-          .card-body.text-primary
+        .card.h-100.border-secondary
+          .card-body.text-secondary
             h1.card-title.text-center
               i.fas.fa-lock
             h4.card-title.text-center 安全

@@ -24,7 +24,8 @@ module.exports = function uploadComments(req) {
           rateHomework: rateHW * 1.0,
           rateLearning: rateLN * 1.0,
           rateRecommendation: rateRD * 1.0,
-          modifiedAt : Date.now()
+          modifiedAt : Date.now(),
+          //hashtag: JSON.parse("["+req.body.hashtag+"]")
         }
       ).then(()=>{
         resolve(isDone);

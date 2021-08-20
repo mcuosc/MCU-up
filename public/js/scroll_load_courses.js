@@ -20,24 +20,35 @@ function callback_infinite(entries) {
           // append html
           for(let doc of res){
             let teachers = "";
-            for(let name of doc.任課教師){
-              teachers += `<h6 class="card-subtitle mb-2">${name}</h6>`;
+            let sessions = "";
+
+            for(let [index, name] of Object.entries(doc.任課教師.正課)){
+              sessions = `<div class="float-end">`
+                            +`<span class="badge rounded-start bg-primary">${doc.上課日期_節次[index].d}</span>`
+                            +`<span class="badge rounded-end bg-secondary">${doc.上課日期_節次[index].t}</span>`
+                            +`</div>`;
+              teachers += `<h6 class="card-subtitle mb-2">${name}${sessions}</h6>`;
             }
 
-            let sessions = "";
-            for(let cell of doc.上課日期_節次){
-              sessions += `<span class="badge bg-primary">${cell.d}</span>`
-                          +`<span class="badge bg-secondary">${cell.t}</span>`;
+            if(doc.任課教師.實習.length > 0){
+                for(let [index, name] of Object.entries(doc.任課教師.實習)){
+                  sessions = `<div class="float-end">`
+                                +`<span class="badge rounded-start bg-primary">${doc.上課日期_節次[index].d}</span>`
+                                +`<span class="badge rounded-end bg-secondary">${doc.上課日期_節次[index].t}</span>`
+                                +`</div>`;
+                  teachers += `<h6 class="card-subtitle mb-2">${name} <small>實習</small>${sessions}</h6>`;
+                }
             }
+
 
             let item = `
             <div class="col-sm-12 col-md-4 col-lg-3 mb-3">
-              <div class="card focus">
+              <div class="card focus h-100">
                 <div class="card-body">
-                  <a href="/courses/${doc.任課教師[0]}/${doc.科目.name}" class="stretched-link"></a>
+                  <a href="/courses/${doc.任課教師.正課[0]}/${doc.科目.name}" class="stretched-link"></a>
+                  <h6 class="card-subtitle mb-2 text-muted">${doc.學校.校區}</h6>
                   <div class="h5 card-title">${ doc.科目.name }</div>
                   ${teachers}
-                  ${sessions}
                 </div>
               </div>
             </div>`;

@@ -8,4 +8,8 @@ node_modules/
 .ipynb_checkpoints/
 .DS_Store
 __pycache__/
+data/*
+
+# 特定檔案
 tempCodeRunnerFile.py
+！data/bs5-scss/_variables.scss

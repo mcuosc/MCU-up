@@ -1,0 +1,45 @@
+.card-body
+  .row
+    .col-8
+      h5.card-title= d.name
+    .col  
+      .float-end
+        if !d.rateRecommendation
+          h5
+            span.badge.bg-secondary 舊金手指評論
+        else if d.userID == me
+          .dropdown
+            button#more.btn(type="button" data-bs-toggle="dropdown")
+              i.fas.fa-ellipsis-v.text-secondary
+            ul.dropdown-menu.dropdown-menu-end
+              li
+                button.dropdown-item.me-1(name='editComment' href=`/courses/${d.teacher}/${d.subject}` data-bs-target='#editModal' data-bs-toggle='modal')
+                  i.fa.fa-pencil-alt
+                  |
+                  | 編輯
+              li
+                button.dropdown-item.text-danger(name='deleteComment' href=`/courses/${d.teacher}/${d.subject}/delete`)
+                  i.fa.fa-trash
+                  |
+                  | 刪除
+          //-a#editComment.text-light.btn.btn-secondary.me-1(href='#editModal' data-bs-target='#editModal' data-bs-toggle='modal') 編輯
+          //-a#deleteComment.btn.btn-danger 刪除
+  .row
+    - let obj = {"豐富度": d.rateLearning, "推薦度": d.rateRecommendation, "作業量": d.rateHomework}
+    each val, key in obj
+      if val
+        .col-4
+          .row
+            .col-sm-12.col-md-4.text-center
+              p= key
+            .col-sm-12.col-md-8.text-center.text-md-start
+              while val > 0
+                i.fa.fa-star
+                - val--
+  //-p.card-text= d.content
+  - const str = d.content;
+  - const sentences = str.split(/\r\n|\r|\n/gi);
+  each sentence in sentences
+    p.card-text= sentence
+      
+  small.text-muted.float-end= `${d.modifiedAt.getFullYear()}-${d.modifiedAt.getMonth()+1}-${d.modifiedAt.getDate()}`
