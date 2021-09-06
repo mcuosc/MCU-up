@@ -1,15 +1,15 @@
-nav.navbar.navbar-expand-lg.navbar-dark.bg-primary.mb-2
+nav.navbar.navbar-expand-md.navbar-dark.bg-primary.mb-2.sticky-top
   .container-fluid
     a.navbar-brand(href='/')
-      | MCU-up
-      |  
+      img(src='/img/logo.svg' width="80" height="30")
+      //-| MCU-up
       small.badge.rounded-pill.bg-secondary Beta
     button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
       span.navbar-toggler-icon
     #navbarNav.collapse.navbar-collapse
       ul.navbar-nav
         li.nav-item
-          a.nav-link(aria-current='page' href='/courses') 課程
+          a.nav-link(aria-current='page' href='/courses/async') 課程
         li.nav-item
           a.nav-link.disabled(href='/arrange') 模擬排課
         li.nav-item

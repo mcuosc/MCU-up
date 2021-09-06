@@ -1,10 +1,10 @@
 extends layout
 
 block content
-  .container.bg-light.p-2.my-2
+  #searchBar.container.bg-light.p-2.my-2.sticky-top
     .row.justify-content-center
       .col-12.col-sm-8.col-md-6
-        form(action=`/courses?page=${queryCourses.page}` method='get')
+        form(action=`/courses?page=${queryCourses.page}&campus=${campus}` method='get')
           .input-group
             input#search.form-control(type='text' name='search' value=search placeholder='任課教師/科目名稱/課程代碼')
             input.text-light.btn.btn-primary(type='submit' value='送出查詢')
@@ -16,6 +16,7 @@ block content
         .col-12.col-sm-6.col-md-4.col-lg-3.mb-3
           .card.focus.h-100
             .card-body
+              p= `${course.學校.校區}`
               a.stretched-link(href=`/courses/${course.任課教師.正課[0]}/${course.科目.name}`)
               h5.card-title= course.科目.name
               each name, index in course.任課教師.正課
@@ -41,21 +42,21 @@ block content
               else p = 1
               if(p >= queryCourses.totalPages-queryCourses.limit/2) p -= parseInt(queryCourses.limit/2)-1
             li.page-item
-               a.page-link(href=`/courses?page=1&search=${search}`) 第一頁
+               a.page-link(href=`/courses?page=1&search=${search}&campus=${campus}`) |<<
             
             if queryCourses.hasPrevPage
               li.page-item
-                a.page-link(href=`/courses?page=${queryCourses.prevPage}&search=${search}`) 上一頁
+                a.page-link(href=`/courses?page=${queryCourses.prevPage}&search=${search}&campus=${campus}`) <
             else
               li.page-item.disabled
-                a.page-link(href="#" tabindex="-1" aria-disabled="true") 上一頁
+                a.page-link(href="#" tabindex="-1" aria-disabled="true") <
             
             if queryCourses.page - 10 > 0
               li.page-item
-                a.page-link(href=`/courses?page=${queryCourses.page-10}&search=${search}`) 上十頁
+                a.page-link(href=`/courses?page=${queryCourses.page-10}&search=${search}&campus=${campus}`) <<
             else
               li.page-item.disabled
-                a.page-link(href="#" tabindex="-1" aria-disabled="true") 上十頁
+                a.page-link(href="#" tabindex="-1" aria-disabled="true") <<
             
             - 
               let p = queryCourses.page
@@ -76,7 +77,7 @@ block content
                   a.page-link= p
               else
                 li.page-item
-                  a.page-link(href=`/courses?page=${p}&search=${search}`)= p
+                  a.page-link(href=`/courses?page=${p}&search=${search}&campus=${campus}`)= p
               - p++
               
             //-while ( p <= queryCourses.limit || p < queryCourses.page + queryCourses.limit/2 ) && p <= queryCourses.totalPages
@@ -90,20 +91,33 @@ block content
             
             if queryCourses.hasNextPage
               li.page-item
-                a.page-link(href=`/courses?page=${queryCourses.nextPage}&search=${search}`) 下一頁
+                a.page-link(href=`/courses?page=${queryCourses.nextPage}&search=${search}&campus=${campus}`) >
             else
               li.page-item.disabled
-                a.page-link(href="#" tabindex="-1" aria-disabled="true") 下一頁
+                a.page-link(href="#" tabindex="-1" aria-disabled="true") >
                 
             if queryCourses.page + 10 <= queryCourses.totalPages
               li.page-item
-                a.page-link(href=`/courses?page=${queryCourses.page+10}&search=${search}`) 下十頁
+                a.page-link(href=`/courses?page=${queryCourses.page+10}&search=${search}&campus=${campus}`) >>
             else
               li.page-item.disabled
                 a.page-link(href="#" tabindex="-1" aria-disabled="true") 下十頁
 
             li.page-item
-               a.page-link(href=`/courses?page=${queryCourses.totalPages}&search=${search}`) 最後一頁
+               a.page-link(href=`/courses?page=${queryCourses.totalPages}&search=${search}&campus=${campus}`) >>|
             
         .col-12
           p.text-center= `頁面 ${queryCourses.page} / ${queryCourses.totalPages}`
+          
+block scripts
+  script.
+    let prevScrollpos = $(window).scrollTop();
+    window.onscroll = function() {
+    let currentScrollPos = $(window).scrollTop();
+    if (prevScrollpos > currentScrollPos) {
+      $("#searchBar").css('top',"60px");
+    } else {
+      $("#searchBar").css('top',"0");
+    }
+    prevScrollpos = currentScrollPos;
+    }

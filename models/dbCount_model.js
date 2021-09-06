@@ -26,7 +26,7 @@ module.exports = function getCount() {
       }
       return ct
     })
-    let query4 = CoursesRating.countDocuments({}, (err, ct) => {
+    let query4 = CoursesRating.countDocuments({isHidden:false}, (err, ct) => {
       if (err) {
         console.log(err);
       }
@@ -37,7 +37,7 @@ module.exports = function getCount() {
       response.courses = result[0]
       response.logs = result[1]
       response.users = result[2]
-      response.ratings = result[2]
+      response.ratings = result[3]
       
       resolve(response);
       //console.log(response)

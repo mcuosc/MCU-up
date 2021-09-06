@@ -1,0 +1,6 @@
+[book]
+authors = ["fanlan1210"]
+language = "zh-TW"
+multilingual = false
+src = "src"
+title = "MCU-up Development Guide"

@@ -13,3 +13,9 @@ body {
 .card > .card-body > h6 > div > span.badge {
   border-radius: 0%;
 }
+
+#searchBar {
+  z-index: 1010;
+  top: 60px;
+  transition: top 0.3s;
+}
