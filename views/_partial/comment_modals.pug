@@ -15,7 +15,7 @@
           .mb-3
             .form-text 評論發布後將無法修改顯示名稱(除非刪除)
           - let name_list = ['豐富度','推薦度','作業量']
-          each name in name_list
+          //-each name in name_list
             .mb-3
               label= name
               .form-control
@@ -28,6 +28,27 @@
                     - for(j=0;j<i;j++)
                       i.fa.fa-star
                     - i++
+          each name in name_list
+            .mb-3
+              label=name
+              .form-control
+                .stars
+                  label.rate
+                    input(type='radio' name=name value=1 required)
+                    i.far.fa-star.star.one-star
+                  label.rate
+                    input(type='radio' name=name value=2)
+                    i.far.fa-star.star.two-star
+                  label.rate
+                    input(type='radio' name=name value=3)
+                    i.far.fa-star.star.three-star
+                  label.rate
+                    input(type='radio' name=name value=4)
+                    i.far.fa-star.star.four-star
+                  label.rate
+                    input(type='radio' name=name value=5)
+                    i.far.fa-star.star.five-star      
+              
           //.form-group
             label(for='hashtag') Tags
             textarea#comment.form-control(rows='5' name='hashtag' placeholder="寫寫你的tag")
@@ -55,7 +76,7 @@
           .mb-3
             .form-text 如需變更該則顯示名稱，請刪除重發
           //- let name_list = ['豐富度','作業量','推薦度']
-          each name in name_list
+          //-each name in name_list
             .mb-3
               label= name
               .form-control
@@ -69,13 +90,13 @@
                       i.fa.fa-star
                     - i++
           
-          //-each name in name_list
+          each name in name_list
             #star_list.mb-3
               label=name
               .form-control
                 .stars
                   label.rate
-                    input(type='radio' name=name value=1)
+                    input(type='radio' name=name value=1 required)
                     i.far.fa-star.star.one-star
                   label.rate
                     input(type='radio' name=name value=2)

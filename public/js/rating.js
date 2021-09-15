@@ -6,8 +6,11 @@ var pathArray = String(url.pathname).split('/');
 $.post(`/courses/${pathArray[2]}/${pathArray[3]}/find`)
   .done( (datas)=>{
     if(datas.data.length){
-      $('#leaveRating').attr('data-bs-target','#editModal');
-      $('#leaveRating').text("編輯評分");
+      /*$('#leaveRating').attr('data-bs-target','#editModal');
+      $('#leaveRating').attr('name','editComment');
+      $('#leaveRating').attr('href',`/courses/${pathArray[2]}/${pathArray[3]}`);*/
+      $('#leaveRating').text("我已評分")
+      .attr('disabled', true);
     }
     else{
       $('#leaveRating').attr('data-bs-target', '#myModal');

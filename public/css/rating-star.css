@@ -3,9 +3,9 @@
     margin: 0 auto;
     cursor: pointer;
 }
-        
+
 .star {
-    color: #ed6a5a !important;
+    /* color: #ed6a5a !important; */
     font-size: 1em;
 }
 
@@ -25,4 +25,4 @@
     left: 50%;
     transform: translate(-50%, 0%);
     pointer-events: none;
-} 
+}
