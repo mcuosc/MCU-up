@@ -1,16 +1,16 @@
-$(document).on({
-        mouseover: function(event) {
-            $(this).find('.far').addClass('fas');
-                $(this).prevAll().find('.far').addClass('fas');
-        },
-        mouseleave: function(event) {
-            $(this).find('.far').removeClass('fas');
-            $(this).prevAll().find('.far').removeClass('fas');
-
-        }
+/*$(document).on({
+    mouseover: function(event) {
+        $(this).find('.far').addClass('fas');
+            $(this).prevAll().find('.far').addClass('fas');
     },
-    '.rate');
+    mouseleave: function(event) {
+        $(this).find('.far').removeClass('fas');
+        $(this).prevAll().find('.far').removeClass('fas');
 
+    }
+},
+'.rate');
+*/
 
 $(document).on('click', '.rate', function() {
     if (!$(this).find('.star').hasClass('rate-active')) {
