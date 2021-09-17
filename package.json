@@ -26,6 +26,8 @@
   },
   "homepage": "https://github.com/mcuosc/mcu-up#readme",
   "dependencies": {
+    "@xmldom/xmldom": "^0.7.5",
+    "bootstrap": "^5.1.1",
     "cheerio": "^1.0.0-rc.5",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^4.4.0",
