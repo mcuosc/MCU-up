@@ -11,8 +11,6 @@ module.exports = function getComment(teacher, subject) {
           console.log(err);
           result.status = "Fail to find data.";
         }
-       
-
         resolve(found);
       }
     );
