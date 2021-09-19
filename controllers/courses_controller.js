@@ -119,9 +119,17 @@ module.exports = class Courses {
       let rateHW = req.body.作業量;
       let rateLN = req.body.豐富度;
       let rateRD = req.body.推薦度;
-      if (rateHW===undefined) rateHW=0
-      if (rateLN===undefined) rateLN=0
-      if (rateRD===undefined ) rateRD=0
+      if (rateHW===undefined || rateLN===undefined || rateRD===undefined ||
+        !(
+          1 <= rateHW &&
+          rateHW <= 5 &&
+          1 <= rateLN &&
+          rateLN <= 5 &&
+          1 <= rateRD &&
+          rateRD <= 5
+        )){
+        res.send("不要亂玩server")
+      }
       let findObj = {
         teacher: req.params.teacher, 
         subject: req.params.subject, 
