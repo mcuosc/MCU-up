@@ -31,15 +31,16 @@
         .col-4
           .row
             .col-sm-12.col-md-4.text-center
-              p= key
+              p.m-1= key
             .col-sm-12.col-md-8.text-center.text-md-start
-              while val > 0
-                i.fa.fa-star
-                - val--
+              span.h5
+                while val > 0
+                  i.fa.fa-star
+                  - val--
   //-p.card-text= d.content
   - const str = d.content;
   - const sentences = str.split(/\r\n|\r|\n/gi);
   each sentence in sentences
-    p.card-text= sentence
+    p.p-3.pb-0.card-text= sentence
       
   small.text-muted.float-end= `${d.modifiedAt.getFullYear()}-${d.modifiedAt.getMonth()+1}-${d.modifiedAt.getDate()}`
