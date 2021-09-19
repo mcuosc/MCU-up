@@ -32,7 +32,7 @@
             .mb-3
               label=name
               .form-control
-                .stars
+                .stars(id=name)
                   label.rate
                     input(type='radio' name=name value=1 required)
                     i.far.fa-star.star.one-star
@@ -47,7 +47,7 @@
                     i.far.fa-star.star.four-star
                   label.rate
                     input(type='radio' name=name value=5)
-                    i.far.fa-star.star.five-star      
+                    i.far.fa-star.star.five-star
               
           //.form-group
             label(for='hashtag') Tags
@@ -94,7 +94,7 @@
             #star_list.mb-3
               label=name
               .form-control
-                .stars
+                .stars(id=name)
                   label.rate
                     input(type='radio' name=name value=1 required)
                     i.far.fa-star.star.one-star

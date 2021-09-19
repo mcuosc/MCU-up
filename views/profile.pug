@@ -1,5 +1,8 @@
 extends layout
 
+block heads
+  link(rel="stylesheet" href='/css/rating-star.css')
+
 block content
     .container
         h1 我的評分
@@ -90,3 +93,4 @@ block content
 block scripts
   script(src="//cdn.jsdelivr.net/npm/sweetalert2@10")
   script(src='/js/rating.js' async)
+  script(src='/js/rating-star.js')
