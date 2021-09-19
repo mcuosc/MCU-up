@@ -9,6 +9,15 @@
     font-size: 1em;
 }
 
+#豐富度,
+#推薦度 {
+    color: #ed6a5a;
+}
+
+#作業量 {
+    color: #787878;
+}
+
 .rate {
     height: 50px;
     margin-left: -5px;
