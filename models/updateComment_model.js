@@ -12,7 +12,6 @@ module.exports = function uploadComments(findObj,dataObj) {
         // form 在body裡，在網址的是params！！！
         // form 在body裡，在網址的是params！！！
       ).then(()=>{
-        console.log("successful")
         resolve()
       })
   });

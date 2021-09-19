@@ -1,14 +1,14 @@
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 
-const CourseRate = require("./rating_model");
+// const CourseRate = require("./rating_model");
 
-module.exports = function uploadComments(findObj,dataObj) {
-  return new Promise(function(resolve, reject) {
-      CourseRate.updateOne(
-        findObj,dataObj
-        // form 在body裡，在網址的是params！！！
-        // form 在body裡，在網址的是params！！！
-        // form 在body裡，在網址的是params！！！
-      ).then(()=>{resolve()})
-  });
-};
+module.exports = async function(query){
+  let result = {};
+  result.test = query.str;
+
+  return result;
+  // for non-async
+  /*return new Promise(function(resolve, reject) {
+    resolve(result);
+  })*/
+}

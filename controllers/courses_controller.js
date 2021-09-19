@@ -1,14 +1,14 @@
 const getCourses = require("../models/courseDetail_model");
 const getComment = require("../models/getComment_model");
 const updateComment = require("../models/updateComment_model");
-const deleteComment = require("../models/deleteComment_model");
+// const deleteComment = require("../models/deleteComment_model");
 const getCourseList = require("../models/courseList_model");
 const getCourse = require("../models/getCourses_model");
 const saveComment = require("../models/comment_model");
-const saveLog = require("../models/saveError_model");
-const getLog = require("../models/getLog_model");
-const getUser = require("../models/getUser_model");
-const countDB = require("../models/dbCount_model");
+// const saveLog = require("../models/saveError_model");
+// const getLog = require("../models/getLog_model");
+// const getUser = require("../models/getUser_model");
+// const countDB = require("../models/dbCount_model");
 const checkComment = require("../models/checkComment_model");
 const departments = require("../data/class_ids_names.json");
 
@@ -151,7 +151,7 @@ module.exports = class Courses {
         isHidden: true,
         modifiedAt : Date.now()
       }
-      deleteComment(findObj,dataObj).then((done) => {
+      updateComment(findObj,dataObj).then((done) => {
         res.redirect("/courses/" + req.params.teacher + "/" + req.params.subject);
       });
     }
