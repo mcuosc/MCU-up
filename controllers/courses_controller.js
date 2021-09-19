@@ -115,14 +115,46 @@ module.exports = class Courses {
     }
   }
   updateMyComment(req, res) {
-    updateComment(req).then((done) => {
-      res.redirect("/courses/" + req.params.teacher + "/" + req.params.subject);
-    });
+    if(req.isAuthenticated()){
+      let rateHW = req.body.作業量;
+      let rateLN = req.body.豐富度;
+      let rateRD = req.body.推薦度;
+      if (rateHW===undefined) rateHW=0
+      if (rateLN===undefined) rateLN=0
+      if (rateRD===undefined ) rateRD=0
+      let findObj = {
+        teacher: req.params.teacher, 
+        subject: req.params.subject, 
+        userID: req.session.passport.user, 
+        isHidden:false ,
+      }
+      let dataObj = {
+          content: req.body.comment,
+          rateHomework: rateHW * 1.0,
+          rateLearning: rateLN * 1.0,
+          rateRecommendation: rateRD * 1.0,
+          modifiedAt : Date.now(),
+      }
+      updateComment(findObj,dataObj).then(() => {
+        res.redirect("/courses/" + req.params.teacher + "/" + req.params.subject);
+    });}
   }
   deleteMyComment(req, res) {
-    deleteComment(req).then((done) => {
-      res.redirect("/courses/" + req.params.teacher + "/" + req.params.subject);
-    });
+    if (req.isAuthenticated()){
+      let findObj = {
+        teacher: req.params.teacher, 
+        subject: req.params.subject, 
+        userID: req.session.passport.user , 
+        isHidden: false
+      }
+      let dataObj = {
+        isHidden: true,
+        modifiedAt : Date.now()
+      }
+      deleteComment(findObj,dataObj).then((done) => {
+        res.redirect("/courses/" + req.params.teacher + "/" + req.params.subject);
+      });
+    }
   }
   postComment(req, res) {
     if (req.isAuthenticated()) {
@@ -136,18 +168,16 @@ module.exports = class Courses {
 
           },
           (err) => {
-            saveLog(err).then((done) => {
-              if (done) {
+            // saveLog(err).then((done) => {
+            //   if (done) {
                 res.send("別再亂玩server拉");
                 console.log(err);
-              } else console.log("log error");
-            });
+              // } else console.log("log error");
+            // });
           }
         );
       })
     } else  res.redirect("/auth/login");
-
-
   }
   /*getCourseLog(req, res) {
     let isLogin = typeof req.session.passport !== "undefined";
