@@ -1,7 +1,7 @@
 
 const classAndIDs = require(__dirname + "/../data/class_ids_names.json");
 const CourseUser = require("./user_model");
-const CourseRate = require("./rating_model");
+const CourseRate = require("./schema/rating_model");
 const ObjectId = require("mongodb").ObjectID;
 
 module.exports = function checkComment(req) {
