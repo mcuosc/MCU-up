@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 var ObjectId = require("mongodb").ObjectID;
-const CourseRate = require("./rating_model");
+const CourseRate = require("./schema/rating_model");
 
 const rawdata = require(__dirname + "/../data/class_ids_names.json");
-const CourseUser = require("./user_model");
+const CourseUser = require("./schema/user_model");
 
 module.exports = function uploadComments(req) {
   let my_department_id = "";

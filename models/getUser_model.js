@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const ObjectId = require('mongodb').ObjectID;
-const CoursesUser = require("./user_model");
+const CoursesUser = require("./schema/user_model");
 
 module.exports = function getUser(id) {
   return new Promise(function (resolve, reject) {
