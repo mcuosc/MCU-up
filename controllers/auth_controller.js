@@ -1,4 +1,4 @@
-const getComment = require("../models/getComment_model");
+const getComment = require("../models/_getComment_model");
 module.exports = class Auth {
 
   callbackByGoogle(req,res){
