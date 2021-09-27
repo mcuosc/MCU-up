@@ -1,10 +1,10 @@
-const getCourses = require("../models/courseDetail_model");
+const getCourses = require("../models/getRating_model");
 const getComment = require("../models/getComment_model");
 const updateComment = require("../models/updateComment_model");
 // const deleteComment = require("../models/deleteComment_model");
-const getCourseList = require("../models/courseList_model");
+const getCourseList = require("../models/_courseList_model");
 const getCourse = require("../models/getCourses_model");
-const saveComment = require("../models/comment_model");
+const saveComment = require("../models/_comment_model");
 // const saveLog = require("../models/saveError_model");
 // const getLog = require("../models/getLog_model");
 // const getUser = require("../models/getUser_model");
@@ -131,9 +131,9 @@ module.exports = class Courses {
         res.send("不要亂玩server")
       }
       let findObj = {
-        teacher: req.params.teacher, 
-        subject: req.params.subject, 
-        userID: req.session.passport.user, 
+        teacher: req.params.teacher,
+        subject: req.params.subject,
+        userID: req.session.passport.user,
         isHidden:false ,
       }
       let dataObj = {
@@ -150,9 +150,9 @@ module.exports = class Courses {
   deleteMyComment(req, res) {
     if (req.isAuthenticated()){
       let findObj = {
-        teacher: req.params.teacher, 
-        subject: req.params.subject, 
-        userID: req.session.passport.user , 
+        teacher: req.params.teacher,
+        subject: req.params.subject,
+        userID: req.session.passport.user ,
         isHidden: false
       }
       let dataObj = {

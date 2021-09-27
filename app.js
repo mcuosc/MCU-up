@@ -48,7 +48,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-const User = require("./models/user_model");
+const User = require("./models/schema/user_model");
 passport.use(User.createStrategy());
 passport.serializeUser(function (user, done) {
   done(null, user.id);
