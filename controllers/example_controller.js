@@ -1,4 +1,4 @@
-const getTest = require("../models/test_model");
+const getTest = require("../models/example_test_model");
 
 /**
 * The example of controller

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const Courses = require("./course_model");
+const Courses = require("./schema/course_model");
 
 module.exports = function getComment(teacher, subject) {
   return new Promise(function (resolve, reject) {

@@ -1,6 +1,6 @@
 // const mongoose = require("mongoose");
 
-// const CourseRate = require("./rating_model");
+const CourseRate = require("./schema/rating_model");
 
 module.exports = async function(query){
   let result = {};
