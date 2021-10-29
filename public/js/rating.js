@@ -1,4 +1,5 @@
 'use strict';
+
 const url = new URL(location.href);
 var pathArray = String(url.pathname).split('/');
 
@@ -78,6 +79,7 @@ $('button[name="editComment"]').click((event)=>{
       $(`input[name="豐富度"][value=${datas.data[0].rateLearning}]`).attr('checked', true);
       $(`input[name="推薦度"][value=${datas.data[0].rateRecommendation}]`).attr('checked', true);
       $('#commentText').val(datas.data[0].content);
+      shining();
     })
     .fail(() => {
       console.log("資料獲取失敗，採用空白編輯模式。");
