@@ -12,6 +12,10 @@
 '.rate');
 */
 
+function shining(){
+    $('.rate [checked]').click();
+};
+
 $(document).on('click', '.rate', function() {
     if (!$(this).find('.star').hasClass('rate-active')) {
         $(this).siblings().find('.star').addClass('far').removeClass('fas rate-active');
