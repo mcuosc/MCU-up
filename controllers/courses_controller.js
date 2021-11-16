@@ -29,9 +29,9 @@ module.exports = class Courses {
 
             if (isLogin) result.me = req.session.passport.user;
 
-            if (req.isAuthenticated())
+            if (req.isAuthenticated()) // not sure why need to check this
               result.department = departments[req.user.profile.email.substr(2, 2)];
-
+            // I guess it's because need to check user's comment?
             res.render("courses_details", result);
             //res.json(result);
           },
@@ -55,7 +55,7 @@ module.exports = class Courses {
 
             if (isLogin) result.me = req.session.passport.user;
 
-            if (req.isAuthenticated())
+            if (req.isAuthenticated()) // maybe need to fix here, is this is the right way
               result.department = departments[req.user.profile.email.substr(2, 2)];
 
             res.json(result);
@@ -127,7 +127,7 @@ module.exports = class Courses {
     });
   }
   deleteMyComment(req, res) {
-    if (req.isAuthenticated()) {
+    // if (req.isAuthenticated()) {
       let findObj = {
         teacher: req.params.teacher,
         subject: req.params.subject,
@@ -141,10 +141,10 @@ module.exports = class Courses {
       updateComment(findObj, dataObj).then((done) => {
         res.redirect("/courses/" + req.params.teacher + "/" + req.params.subject);
       });
-    }
+    // }
   }
   postComment(req, res) {
-    if (req.isAuthenticated()) {
+    // if (req.isAuthenticated()) {
       saveComment(req).then(
         (done) => {
           if (done) res.redirect("/courses/" + req.params.teacher + "/" + req.params.subject);
@@ -158,7 +158,7 @@ module.exports = class Courses {
           // });
         }
       );
-    } else res.redirect("/auth/login");
+    // } else res.redirect("/auth/login");
   }
   /*getCourseLog(req, res) {
     let isLogin = typeof req.session.passport !== "undefined";

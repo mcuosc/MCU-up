@@ -23,7 +23,7 @@ module.exports = function uploadComments(req) {
         time: Date.now(),
       });
     }
-    if (req.isAuthenticated()) {
+    // if (req.isAuthenticated()) {
       CourseRate.insertMany(
         {
           content: req.body.comment,
@@ -52,9 +52,9 @@ module.exports = function uploadComments(req) {
           });
         }
       );
-    } else {
-      resolve(isDone);
-    }
+    // } else {
+    //   resolve(isDone);
+    // }
   })
   });
 };

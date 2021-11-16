@@ -5,16 +5,12 @@ const courseUser = require("../models/schema/user_model");
 
 module.exports = class Course {
   checkCourse(req, res, next) {
-    if (req.isAuthenticated()) {
       courseUser.find({ _id: ObjectId(req.session.passport.user) }, (err, found) => {
         if (err) res.send("不要亂玩server");
         else {
           next();
         }
       });
-    }else{
-      res.redirect("/auth/login")
-    }
   }
   checkComment(req, res, next) {
     if (req.isAuthenticated()) {
