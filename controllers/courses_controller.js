@@ -1,4 +1,4 @@
-const getCourses = require("../models/getRating_model");
+const getRating = require("../models/getRating_model");
 const getComment = require("../models/getComment_model");
 const updateComment = require("../models/updateComment_model");
 // const deleteComment = require("../models/deleteComment_model");
@@ -23,15 +23,14 @@ module.exports = class Courses {
       if (result.length === 0) {
         res.redirect("/courses");
       } else {
-        getCourses(query).then(
+        getRating(query).then(
           (result) => {
             let isLogin = typeof req.session.passport !== "undefined";
 
             if (isLogin) result.me = req.session.passport.user;
 
             if (req.isAuthenticated())
-              result.department =
-                departments[req.user.profile.email.substr(2, 2)];
+              result.department = departments[req.user.profile.email.substr(2, 2)];
 
             res.render("courses_details", result);
             //res.json(result);
@@ -50,15 +49,14 @@ module.exports = class Courses {
       if (result.length === 0) {
         res.redirect("/courses");
       } else {
-        getCourses(query).then(
+        getRating(query).then(
           (result) => {
             let isLogin = typeof req.session.passport !== "undefined";
 
             if (isLogin) result.me = req.session.passport.user;
 
             if (req.isAuthenticated())
-              result.department =
-                departments[req.user.profile.email.substr(2, 2)];
+              result.department = departments[req.user.profile.email.substr(2, 2)];
 
             res.json(result);
           },
@@ -98,11 +96,7 @@ module.exports = class Courses {
 
   getMyComment(req, res) {
     if (typeof req.session.passport !== "undefined") {
-      getComment(
-        req.params.teacher,
-        req.params.subject,
-        req.session.passport.user
-      ).then(
+      getComment(req.params.teacher, req.params.subject, req.session.passport.user).then(
         (result) => {
           res.json(result);
         },
@@ -115,77 +109,56 @@ module.exports = class Courses {
     }
   }
   updateMyComment(req, res) {
-    if(req.isAuthenticated()){
-      let rateHW = req.body.作業量;
-      let rateLN = req.body.豐富度;
-      let rateRD = req.body.推薦度;
-      if (rateHW===undefined || rateLN===undefined || rateRD===undefined ||
-        !(
-          1 <= rateHW &&
-          rateHW <= 5 &&
-          1 <= rateLN &&
-          rateLN <= 5 &&
-          1 <= rateRD &&
-          rateRD <= 5
-        )){
-        res.send("不要亂玩server")
-      }
+    let findObj = {
+      teacher: req.params.teacher,
+      subject: req.params.subject,
+      userID: req.session.passport.user,
+      isHidden: false,
+    };
+    let dataObj = {
+      content: req.body.comment,
+      rateHomework: req.body.作業量 * 1.0,
+      rateLearning: req.body.豐富度 * 1.0,
+      rateRecommendation: req.body.推薦度 * 1.0,
+      modifiedAt: Date.now(),
+    };
+    updateComment(findObj, dataObj).then(() => {
+      res.redirect("/courses/" + req.params.teacher + "/" + req.params.subject);
+    });
+  }
+  deleteMyComment(req, res) {
+    if (req.isAuthenticated()) {
       let findObj = {
         teacher: req.params.teacher,
         subject: req.params.subject,
         userID: req.session.passport.user,
-        isHidden:false ,
-      }
-      let dataObj = {
-          content: req.body.comment,
-          rateHomework: rateHW * 1.0,
-          rateLearning: rateLN * 1.0,
-          rateRecommendation: rateRD * 1.0,
-          modifiedAt : Date.now(),
-      }
-      updateComment(findObj,dataObj).then(() => {
-        res.redirect("/courses/" + req.params.teacher + "/" + req.params.subject);
-    });}
-  }
-  deleteMyComment(req, res) {
-    if (req.isAuthenticated()){
-      let findObj = {
-        teacher: req.params.teacher,
-        subject: req.params.subject,
-        userID: req.session.passport.user ,
-        isHidden: false
-      }
+        isHidden: false,
+      };
       let dataObj = {
         isHidden: true,
-        modifiedAt : Date.now()
-      }
-      updateComment(findObj,dataObj).then((done) => {
+        modifiedAt: Date.now(),
+      };
+      updateComment(findObj, dataObj).then((done) => {
         res.redirect("/courses/" + req.params.teacher + "/" + req.params.subject);
       });
     }
   }
   postComment(req, res) {
     if (req.isAuthenticated()) {
-      checkComment(req).then((req)=>{
-        saveComment(req).then(
-          (done) => {
-            if (done)
-              res.redirect(
-                "/courses/" + req.params.teacher + "/" + req.params.subject
-              );
-
-          },
-          (err) => {
-            // saveLog(err).then((done) => {
-            //   if (done) {
-                res.send("別再亂玩server拉");
-                console.log(err);
-              // } else console.log("log error");
-            // });
-          }
-        );
-      })
-    } else  res.redirect("/auth/login");
+      saveComment(req).then(
+        (done) => {
+          if (done) res.redirect("/courses/" + req.params.teacher + "/" + req.params.subject);
+        },
+        (err) => {
+          // saveLog(err).then((done) => {
+          //   if (done) {
+          res.send("別再亂玩server拉");
+          console.log(err);
+          // } else console.log("log error");
+          // });
+        }
+      );
+    } else res.redirect("/auth/login");
   }
   /*getCourseLog(req, res) {
     let isLogin = typeof req.session.passport !== "undefined";
@@ -230,5 +203,4 @@ module.exports = class Courses {
         });
       } else res.redirect("/auth/login");
   }*/
-
 };

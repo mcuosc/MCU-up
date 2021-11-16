@@ -12,6 +12,14 @@
 '.rate');
 */
 
+$(document).on('DOMContentLoaded', '.rate[checked]',function(){
+    if (!$(this).find('.star').hasClass('rate-active')) {
+        $(this).siblings().find('.star').addClass('far').removeClass('fas rate-active');
+        $(this).find('.star').addClass('rate-active fas').removeClass('far star-over');
+        $(this).prevAll().find('.star').addClass('fas').removeClass('far star-over');
+    }
+})
+
 $(document).on('click', '.rate', function() {
     if (!$(this).find('.star').hasClass('rate-active')) {
         $(this).siblings().find('.star').addClass('far').removeClass('fas rate-active');
