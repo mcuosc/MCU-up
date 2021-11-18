@@ -13,7 +13,7 @@ module.exports = class Course {
       });
   }
   checkComment(req, res, next) {
-    if (req.isAuthenticated()) {
+    // if (req.isAuthenticated()) {
       let rateHW = req.body.作業量;
       let rateLN = req.body.豐富度;
       let rateRD = req.body.推薦度;
@@ -27,8 +27,8 @@ module.exports = class Course {
       } else {
         next();
       }
-    }else{
-      res.redirect("/auth/login")
-    }
+    // }else{
+    //   res.redirect("/auth/login")
+    // }
   }
 };
