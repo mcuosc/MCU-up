@@ -1,12 +1,14 @@
 const mongoose = require("mongoose");
 var ObjectId = require("mongodb").ObjectID;
+var path = require('path');
 const courseRate = require("../models/schema/rating_model");
 const courseUser = require("../models/schema/user_model");
+const beAGoodGuy = path.join(__dirname, '../views/beAGoodGuy.jpg');
 
 module.exports = class Course {
   checkCourse(req, res, next) {
       courseUser.find({ _id: ObjectId(req.session.passport.user) }, (err, found) => {
-        if (err) res.send("不要亂玩server");
+        if (err) res.sendFile(beAGoodGuy);
         else {
           next();
         }
@@ -23,7 +25,7 @@ module.exports = class Course {
         rateRD === undefined ||
         !(1 <= rateHW && rateHW <= 5 && 1 <= rateLN && rateLN <= 5 && 1 <= rateRD && rateRD <= 5)
       ) {
-        res.send("不要亂玩server");
+        res.sendFile(beAGoodGuy);
       } else {
         next();
       }

@@ -22,7 +22,7 @@ module.exports = function uploadComments(req) {
         errMsg: "name error",
         time: Date.now(),
       });
-    }
+    }// maybe need to fix something here
     // if (req.isAuthenticated()) {
       CourseRate.insertMany(
         {
