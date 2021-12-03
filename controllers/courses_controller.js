@@ -2,14 +2,13 @@ const getRating = require("../models/getRating_model");
 const getComment = require("../models/getComment_model");
 const updateComment = require("../models/updateComment_model");
 // const deleteComment = require("../models/deleteComment_model");
-const getCourseList = require("../models/_courseList_model");
+const getCourseList = require("../models/getCoursesList_model");
 const getCourse = require("../models/getCourses_model");
-const saveComment = require("../models/_comment_model");
+const saveComment = require("../models/postComment_model");
 // const saveLog = require("../models/saveError_model");
 // const getLog = require("../models/getLog_model");
 // const getUser = require("../models/getUser_model");
 // const countDB = require("../models/dbCount_model");
-const checkComment = require("../models/checkComment_model");
 const departments = require("../data/class_ids_names.json");
 
 //const roles = require("../data/roles.json");
@@ -29,11 +28,10 @@ module.exports = class Courses {
 
             if (isLogin) result.me = req.session.passport.user;
 
-            if (req.isAuthenticated()) // not sure why need to check this
+            if (req.isAuthenticated()) // TODO: get username by client or other method without this controller
               result.department = departments[req.user.profile.email.substr(2, 2)];
             // I guess it's because need to check user's comment?
             res.render("courses_details", result);
-            //res.json(result);
           },
           (err) => {
             console.log(err);
@@ -51,13 +49,6 @@ module.exports = class Courses {
       } else {
         getRating(query).then(
           (result) => {
-            let isLogin = typeof req.session.passport !== "undefined";
-
-            if (isLogin) result.me = req.session.passport.user;
-
-            if (req.isAuthenticated()) // maybe need to fix here, is this is the right way
-              result.department = departments[req.user.profile.email.substr(2, 2)];
-
             res.json(result);
           },
           (err) => {
