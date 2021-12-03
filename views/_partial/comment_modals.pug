@@ -5,7 +5,7 @@
       // Modal Header
       form#newForm(action=`#` method='post')
         .modal-header
-          select.form-select(name="name" aria-label='Default select example')
+          select.form-select(name="name")
             if department
               option(value=department selected)= department
             option(value='銘傳大學') 匿名
@@ -114,7 +114,7 @@
           .form-group
             label(for='comment') 評論:
             textarea#commentText.form-control(rows='5' name='comment' placeholder="寫寫你的感受（可選）")
-            //-input#userID(type='hidden' name='userID' value=me)
+            
         // Modal footer
         .modal-footer
           button#editSubmit.btn.btn-primary.text-light(type='submit') 送出

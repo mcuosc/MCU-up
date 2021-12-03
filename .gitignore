@@ -8,6 +8,7 @@ node_modules/
 .ipynb_checkpoints/
 .DS_Store
 __pycache__/
+.directory
 data/*
 
 # 特定檔案
