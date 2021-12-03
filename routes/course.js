@@ -3,10 +3,11 @@ var router = express.Router();
 
 const CourseMethod = require("../controllers/courses_controller");
 const CourseMiddleware = require("../services/course_middleware");
-const checkAuth = require("../services/auth_middleware")
+const AuthMiddleware = require("../services/auth_middleware");
 
 var courseMethod = new CourseMethod();
-var courseMiddleware = new CourseMiddleware()
+var courseMiddleware = new CourseMiddleware();
+var checkAuth = new AuthMiddleware();
 
 router.get("/",courseMethod.getCoursesInfo);
 router.get("/async", courseMethod.printCourses);
@@ -16,14 +17,14 @@ router.get("/json", courseMethod.getCoursesInfoJSON);
 
 router.route("/:teacher/:subject")
   .get(courseMethod.getCourseInfo)
-  .post(checkAuth,courseMiddleware.checkCourse,courseMiddleware.checkComment,courseMethod.postComment);
+  .post(checkAuth.authen,courseMiddleware.checkCourse,courseMiddleware.checkComment,courseMethod.postComment);
 router.get("/:teacher/:subject/json", courseMethod.getCourseInfoJSON);
 
 router.route("/:teacher/:subject/find")
-  .post(checkAuth,courseMethod.getMyComment);
+  .post(checkAuth.author,courseMethod.getMyComment);
 router.route("/:teacher/:subject/edit")
-  .post(checkAuth,courseMiddleware.checkComment,courseMethod.updateMyComment);
+  .post(checkAuth.author,courseMiddleware.checkComment,courseMethod.updateMyComment);
 router.route("/:teacher/:subject/delete")
-  .post(checkAuth,courseMethod.deleteMyComment);
+  .post(checkAuth.author,courseMethod.deleteMyComment);
 
 module.exports = router;

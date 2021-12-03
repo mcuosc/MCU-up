@@ -22,6 +22,9 @@ function inWhitelist(name) {
   return false;
 }
 
+/* Global Middlewares */
+const preRenderMiddleware = require("./services/preRenderMiddleware");
+
 /* Routers */
 const courseRouter = require("./routes/course");
 const authRouter = require("./routes/auth");
@@ -90,18 +93,14 @@ mongoose.connect(process.env.DATABASE_LINK, {
 
 app.use(express.static("public"));
 
-app.set("view engine", "pug"); // switch to pug
+app.set("view engine", "pug");
 app.use(
   bodyParser.urlencoded({
     extended: true,
   })
 );
 
-app.use(function(req,res,next) {
-  res.locals.isAuthenticated = req.isAuthenticated();
-  // res.locals.google_analytics = process.env?.GA_MEASUREMENT_ID
-  next();
-})
+app.use(preRenderMiddleware);
 
 app.get("/", (req, res) => {
   res.render("home",  {isAuthenticated:req.isAuthenticated()});

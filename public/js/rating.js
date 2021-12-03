@@ -70,7 +70,7 @@ $('#myModal').on('shown.bs.modal',()=>{
 
 $('button[name="editComment"]').click((event)=>{
   let link = $(event.target).attr('href');
-  $.post(`${link}/find`/*,{userID: $('#userID').val()}*/) // post with userID is abandoned
+  $.post(`${link}/find`)
     .done((datas) => {
       console.log(datas);console.log(datas.data[0]);
       $('#editForm').attr('action',`${link}/edit`);
