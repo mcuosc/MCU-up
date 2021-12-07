@@ -29,7 +29,7 @@ module.exports = class Courses {
             if (isLogin) result.me = req.session.passport.user;
 
             if (req.isAuthenticated()) // TODO: get username by client or other method without this controller
-              result.department = departments[req.user.profile.email.substr(2, 2)];
+              result.department = departments[req.user.username.substr(2, 2)];
             // I guess it's because need to check user's comment?
             res.render("courses_details", result);
           },
@@ -86,7 +86,6 @@ module.exports = class Courses {
   }
 
   getMyComment(req, res) {
-    if (typeof req.session.passport !== "undefined") {
       getComment(req.params.teacher, req.params.subject, req.session.passport.user).then(
         (result) => {
           res.json(result);
@@ -95,9 +94,6 @@ module.exports = class Courses {
           console.log(err);
         }
       );
-    } else {
-      res.status(403).send("need login.");
-    }
   }
   updateMyComment(req, res) {
     let findObj = {

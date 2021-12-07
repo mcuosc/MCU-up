@@ -9,12 +9,12 @@ module.exports = function uploadComments(req) {
   let my_department_id = "";
   let isDone = false;
   return new Promise(function (resolve, reject) {
-    CourseUser.find({_id: ObjectId(req.session.passport.user)},(err, found) => {
+    CourseUser.find({googleID: req.session.passport.user},(err, found) => {
       if(!err) resolve(found);
     }
     ).then( (found) => {
-    my_department_id = found[0].profile.email.slice(2, 4); 
-    
+    my_department_id = found[0].profile.email.slice(2, 4); // TODO: slice data from req.user
+
     if (!(rawdata[my_department_id] === req.body.name || req.body.name === "銘傳大學")) {
       reject({
         userID: req.session.passport.user,
@@ -33,7 +33,7 @@ module.exports = function uploadComments(req) {
           rateRecommendation: req.body.推薦度,
           subject: req.params.subject,
           teacher: req.params.teacher,
-          userID: req.user._id,
+          userID: req.user.googleID,
           createdAt: Date.now(),
           modifiedAt: Date.now(),
           isHidden: false,

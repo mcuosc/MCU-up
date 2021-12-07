@@ -10,6 +10,7 @@ module.exports = function getComment(teacher, subject, userID) {
         if (err) {
           console.log(err);
           result.status = "Fail to find data.";
+          reject(result);
         }
         result = {
           teacherAndSubject: { teacher: teacher, subject: subject },
