@@ -11,16 +11,6 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const session = require("express-session");
 const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
-/*-- whitelist module --*/
-const whitelist = require("./data/whitelist.json");
-function inWhitelist(name) {
-  for(let item of whitelist){
-    if(name.search(item)!=-1){
-      return true;
-    }
-  }
-  return false;
-}
 
 /* Global Middlewares */
 const preRenderMiddleware = require("./services/preRenderMiddleware");
@@ -39,6 +29,7 @@ app.use(helmet({
       reportOnly: true
   }*/
 }));
+
 /*Auth Initializaion */
 app.use(
   session({
@@ -54,10 +45,10 @@ app.use(flash());
 const User = require("./models/schema/user_model");
 passport.use(User.createStrategy());
 passport.serializeUser(function (user, done) {
-  done(null, user.id);
+  done(null, user.googleID);
 });
-passport.deserializeUser(function (id, done) {
-  User.findById(id, function (err, user) {
+passport.deserializeUser(function (user, done) {
+  User.findOne({googleID: user}, function (err, user) {
     done(err, user);
   });
 });
@@ -67,13 +58,12 @@ passport.use(
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
       callbackURL: "/auth/google/callback",
-      userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
+      //userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     },
     function (accessToken, refreshToken, profile, cb) {
-      //console.log(profile);
 
-      if ( (profile._json.hd === "me.mcu.edu.tw") && (!(process.env.WHITELIST_MODE === 'true') || inWhitelist(profile._json.email))){
-        User.findOrCreate({ username: profile.emails[0].value,googleId: profile.id, profile:profile._json}, (err, user)=>{
+      if ( (profile._json.hd === "me.mcu.edu.tw") /*&& (!(process.env.WHITELIST_MODE === 'true') || inWhitelist(profile._json.email))*/){
+        User.findOrCreate({ username: profile.emails[0].value, googleID: profile.id}, (err, user)=>{
           return cb(err, user);
         });
       }
