@@ -13,7 +13,7 @@ module.exports = function uploadComments(req) {
       if(!err) resolve(found);
     }
     ).then( (found) => {
-    my_department_id = found[0].profile.email.slice(2, 4); // TODO: slice data from req.user
+    my_department_id = found[0].username.substr(2,2); // TODO: slice data from req.user
 
     if (!(rawdata[my_department_id] === req.body.name || req.body.name === "銘傳大學")) {
       reject({

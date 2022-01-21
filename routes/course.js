@@ -17,7 +17,8 @@ router.get("/json", courseMethod.getCoursesInfoJSON);
 
 router.route("/:teacher/:subject")
   .get(courseMethod.getCourseInfo)
-  .post(checkAuth.authen,courseMiddleware.checkCourse,courseMiddleware.checkComment,courseMethod.postComment);
+  .post(checkAuth.authen,courseMiddleware.checkComment,courseMethod.postComment);
+  //courseMiddleware.checkCourse, 不確定在檢查什麼
 router.get("/:teacher/:subject/json", courseMethod.getCourseInfoJSON);
 
 router.route("/:teacher/:subject/find")
