@@ -19,6 +19,7 @@ $.post(`/courses/${pathArray[2]}/${pathArray[3]}/find`)
     }
   })
   .fail( ()=>{
+    sessionStorage.setItem('lastView',location.href);
     $('#leaveRating').attr('onclick','location.href="/auth/login"');
   });
 
@@ -70,9 +71,12 @@ $('#myModal').on('shown.bs.modal',()=>{
 
 $('button[name="editComment"]').click((event)=>{
   let link = $(event.target).attr('href');
+  //if(location.pathname === "/auth/profile") location.href = link;
+  //else
   $.post(`${link}/find`)
     .done((datas) => {
-      console.log(datas);console.log(datas.data[0]);
+      //console.log(datas);console.log(datas.data[0]);
+
       $('#editForm').attr('action',`${link}/edit`);
       $(`select[name="name"] > option[value=${datas.data[0].name}]`).attr('selected', true);
       $(`input[name="作業量"][value=${datas.data[0].rateHomework}]`).attr('checked', true);
@@ -89,7 +93,8 @@ $('button[name="editComment"]').click((event)=>{
 
 $('button[name="deleteComment"]').click((event) => {
   let link = $(event.target).attr('href');
-  console.log(link);
+  //if(location.pathname === "/auth/profile") location.href = link;
+  //else
   Swal.fire({
     title: '確定要刪除？',
     confirmButtonText: `是`,
@@ -97,7 +102,7 @@ $('button[name="deleteComment"]').click((event) => {
     cancelButtonText: '取消'
   }).then((result) => {
     if (result.isConfirmed) {
-      $.post( link/*,{userID: $('#userID').val()}*/)
+      $.post( `${link}/delete`/*,{userID: $('#userID').val()}*/)
         .done(() => {
           Swal.fire({
             title: '已刪除！',

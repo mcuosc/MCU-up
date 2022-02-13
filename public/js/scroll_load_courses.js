@@ -9,7 +9,7 @@ let count = 1;
 function callback_infinite(entries) {
   Array.prototype.forEach.call(entries, entry => {
     if(entry.isIntersecting) {
-      fetch('/courses/json?' + 'page=' + count + '&search=' + params.get('search'))
+      fetch('/courses/json?' + 'page=' + count + '&search=' + params.get('search') + `&campus=["桃園","臺北"]`)
         .then(res => res.json())
         .then(res => {
           // 取消觀察，以免又觸發下一個 request
