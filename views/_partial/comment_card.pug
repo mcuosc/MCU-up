@@ -11,6 +11,7 @@
           .dropdown
             button#more.btn(type="button" data-bs-toggle="dropdown")
               i.fas.fa-ellipsis-v.text-secondary
+            //- TODO: 整合以下功能的 href 屬性
             ul.dropdown-menu.dropdown-menu-end
               li
                 button.dropdown-item.me-1(name='editComment' href=`/courses/${d.teacher}/${d.subject}` data-bs-target='#editModal' data-bs-toggle='modal')
@@ -18,7 +19,7 @@
                   |
                   | 編輯
               li
-                button.dropdown-item.text-danger(name='deleteComment' href=`/courses/${d.teacher}/${d.subject}/delete`)
+                button.dropdown-item.text-danger(name='deleteComment' href=`/courses/${d.teacher}/${d.subject}`)
                   i.fa.fa-trash
                   |
                   | 刪除
@@ -28,12 +29,12 @@
     - let obj = {"豐富度": d.rateLearning, "推薦度": d.rateRecommendation, "作業量": d.rateHomework}
     each val, key in obj
       if val
-        .col-4
+        .col-12.col-sm-4
           .row
-            .col-sm-12.col-md-4.text-center
+            .col-4.col-sm-12.col-lg-4.text-center
               p.m-1= key
-            .col-sm-12.col-md-8.text-center.text-md-start
-              span.h5
+            .col-8.col-sm-12.col-lg-8.text-start.text-sm-center.text-lg-start
+              p.h5.m-1
                 while val > 0
                   i.fa.fa-star
                   - val--
