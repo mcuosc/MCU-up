@@ -10,7 +10,7 @@ const Course = require('./schema/course_model');
 module.exports = function getCourseList(req) {
   let result = {};
   let campus = []
-  if ( req.query.campus === undefined) campus = ["桃園","台北"];
+  if ( req.query.campus === undefined || req.query.campus === '') campus = ["桃園","台北","基河","金門"];
   else campus = JSON.parse(req.query.campus)
   return new Promise(function(resolve, reject) {
     let page = 1;
