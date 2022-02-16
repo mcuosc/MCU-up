@@ -71,12 +71,13 @@ module.exports = class Courses {
   }
 
   printCourses(req, res) {
-    res.render("courses_async");
+    res.render("courses_async",req.query);
   }
 
   getCoursesInfoJSON(req, res) {
     getCourseList(req).then(
       (result) => {
+        if(result.queryCourses.docs.length === 0) res.status(404).json();
         res.json(result.queryCourses.docs);
       },
       (err) => {
