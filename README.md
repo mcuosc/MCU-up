@@ -20,7 +20,7 @@ MCU-up
 3. 執行npm install，有特別要額外安裝的module:body-parser跟nodemon(nodemon需要下npm install -g nodemon )
 4. 如要執行本專案在小黑下node app.js 或 nodemon app.js(預設port端3000)
 
-* 爬蟲以移置本專案，如有需要請至 [MCU-up-DBbackup](https://github.com/mcuosc/MCU-up-DBbackup) 查看
+* 爬蟲已移置本專案，如有需要請至 [MCU-up-DBbackup](https://github.com/mcuosc/MCU-up-DBbackup) 查看
 
 ## SCREENSHOT
 ![](img/1.JPG)
