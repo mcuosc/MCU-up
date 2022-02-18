@@ -17,7 +17,7 @@ MCU-up
 
 1. clone本專案
 2. 新增.env檔案
-3. 執行npm install，有特別要額外安裝的module:body-parser跟nodemon(nodemon需要下npm install -g nodemon )
+3. 執行npm install，有特別要額外安裝的 module:body-parser 跟 nodemon(nodemon需要下npm install -g nodemon )
 4. 如要執行本專案在小黑下node app.js 或 nodemon app.js(預設port端3000)
 
 * 爬蟲已移置本專案，如有需要請至 [MCU-up-DBbackup](https://github.com/mcuosc/MCU-up-DBbackup) 查看
