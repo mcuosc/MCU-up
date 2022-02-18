@@ -10,16 +10,17 @@ MCU-up
 2. [MongoDB](https://www.mongodb.com)
 
 建議工具：
-1. [RoBo3T](https://robomongo.org/)：還不錯看mongoDB的GUI程式
+1. [RoBo3T](https://robomongo.org/)：看mongoDB的GUI程式
 
 建立流程
 ---
 
 1. clone本專案
-2. 執行main.py
-3. Google的token，需要新增.env檔案
-4. 執行npm install，有特別要額外安裝的module:body-parser跟nodemon(nodemon需要下npm install -g nodemon )
-5. 如要執行本專案在小黑下nodemon app.js(預設port端3000)
+2. 新增.env檔案
+3. 執行npm install，有特別要額外安裝的module:body-parser跟nodemon(nodemon需要下npm install -g nodemon )
+4. 如要執行本專案在小黑下node app.js 或 nodemon app.js(預設port端3000)
+
+* 爬蟲以移置本專案，如有需要請至 [MCU-up-DBbackup](https://github.com/mcuosc/MCU-up-DBbackup) 查看
 
 ## SCREENSHOT
 ![](img/1.JPG)
