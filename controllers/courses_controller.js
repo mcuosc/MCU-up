@@ -78,7 +78,7 @@ module.exports = class Courses {
     getCourseList(req).then(
       (result) => {
         if(result.queryCourses.docs.length === 0) res.status(404).json();
-        res.json(result.queryCourses.docs);
+        else res.json(result.queryCourses.docs);
       },
       (err) => {
         console.log(err);

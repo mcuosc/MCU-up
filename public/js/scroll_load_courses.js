@@ -2,7 +2,7 @@
 const url = new URL(location.href);
 let params = url.searchParams;
 if(!params.has("search")) params.set('search','');
-if(!params.has("campus")) params.set('campus','["台北","桃園","基河","金門"]');
+if(!params.has("campus")) params.set('campus','["台北","桃園","成功","基河","金門"]');
 
 const infiniteWrap = document.getElementById('js-infinite-wrap');
 let count = 1;

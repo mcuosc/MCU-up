@@ -3,16 +3,19 @@ extends layout
 block content
 
   #searchBar.container.bg-light.p-2.my-2.sticky-top
+    .row.justify-content-center
+      .col-12.col-sm-10.mb-1
+        a.btn.d-block.btn-outline-secondary(href=`?campus=["台北","桃園","成功","基河","金門"]`) 全部
     .row.justify-content-center.mb-2
-      .col-12.mb-1
-        a.btn.d-block.btn-outline-secondary(href=`?campus=["台北","桃園","基河","金門"]`) 全部
-      .col-3
+      .col-6.col-sm-2.mb-1
         a.btn.d-block.btn-outline-secondary(href=`?campus=["台北"]`) 臺北
-      .col-3
+      .col-6.col-sm-2.mb-1
         a.btn.d-block.btn-outline-secondary(href=`?campus=["桃園"]`) 桃園
-      .col-3
+      .col-4.col-sm-2
+        a.btn.d-block.btn-outline-secondary(href=`?campus=["成功"]`) 成功
+      .col-4.col-sm-2
         a.btn.d-block.btn-outline-secondary(href=`?campus=["基河"]`) 基河
-      .col-3
+      .col-4.col-sm-2
         a.btn.d-block.btn-outline-secondary(href=`?campus=["金門"]`) 金門
     .row.justify-content-center
       .col-12.col-sm-8.col-md-6
