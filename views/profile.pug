@@ -6,7 +6,7 @@ block heads
     {
     const url = new URL(location.href);
     let params = url.searchParams;
-    if(params.get('redirect') === "true") location.replace(sessionStorage.getItem("lastView"));
+    if(params.get('redirect') === "true" && sessionStorage.getItem("lastView") !== null) location.replace(sessionStorage.getItem("lastView"));
     }
 
 block content
