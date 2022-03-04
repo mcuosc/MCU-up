@@ -2,6 +2,7 @@
 const url = new URL(location.href);
 let params = url.searchParams;
 if(!params.has("search")) params.set('search','');
+if(!params.has("campus")) params.set('campus','["台北","桃園","成功","基河","金門"]');
 
 const infiniteWrap = document.getElementById('js-infinite-wrap');
 let count = 1;
@@ -9,7 +10,7 @@ let count = 1;
 function callback_infinite(entries) {
   Array.prototype.forEach.call(entries, entry => {
     if(entry.isIntersecting) {
-      fetch('/courses/json?' + 'page=' + count + '&search=' + params.get('search'))
+      fetch('/courses/json?' + 'page=' + count + '&search=' + params.get('search') + `&campus=${params.get('campus')}`)
         .then(res => res.json())
         .then(res => {
           // 取消觀察，以免又觸發下一個 request

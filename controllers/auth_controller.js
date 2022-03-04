@@ -3,7 +3,7 @@ module.exports = class Auth {
 
   callbackByGoogle(req,res){
     //res.redirect("back");
-    res.redirect('/auth/profile');
+    res.redirect('/auth/profile?redirect=true');
   }
 
   login(req,res){

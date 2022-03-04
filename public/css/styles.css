@@ -19,3 +19,8 @@ body {
   top: 60px;
   transition: top 0.3s;
 }
+
+.btn-outline-primary:hover, .btn-outline-secondary:hover,
+.btn-outline-primary.active, .btn-outline-secondary.active {
+  color: white;
+}
