@@ -9,10 +9,8 @@ module.exports = function uploadComments(req) {
   let my_department_id = "";
   let isDone = false;
   return new Promise(function (resolve, reject) {
-    CourseUser.find({googleID: req.session.passport.user},(err, found) => {
-      if(!err) resolve(found);
-    }
-    ).then( (found) => {
+    CourseUser.find({googleID: req.session.passport.user})
+    .then( (found) => {
     my_department_id = found[0].username.substr(2,2); // TODO: slice data from req.user
 
     if (!(rawdata[my_department_id] === req.body.name || req.body.name === "銘傳大學")) {
