@@ -17,7 +17,7 @@ MCU-up
 
 1. clone本專案
 2. 新增 `.env` 檔案
-3. 新增 `whitelist.json` 和 `class_ids_names.json` 檔案於 `data` 資料夾中
+3. 新增 `class_ids_names.json` 檔案於 `data` 資料夾中
 4. 執行 `npm install`，有特別要額外安裝的 module:body-parser 跟 nodemon(nodemon需要下npm install -g nodemon)
 5. 如要執行本專案在小黑下 node app.js 或 nodemon app.js(預設port端3000)
 

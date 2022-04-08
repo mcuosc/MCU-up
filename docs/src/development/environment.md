@@ -14,20 +14,22 @@
 接下來將以 linux shell 示範，windows 請採用 powershell 或其他相容終端機。
 
 ## 複製專案至本機
+
+* 如有發 PR 的需求，可先自行 fork 後再將本專案複製下來。
+
 ```shell=
 git clone https://github.com/mcuosc/MCU-up.git
 cd MCU-up
 ```
 
 ## 爬蟲(資料庫建立)
-如有需要請至 [MCU-up-DBbackup](https://github.com/andy010629/course-crawler) 查看
+如有需要請至 [course-crawler](https://github.com/andy010629/course-crawler) 查看
 
 ## 專案初始化
 在 clone 下來的資料夾：
 ```shell
 cp .env.example .env
 sed -i 's/secret\=/secret="test"/g' .env
-echo "[]" > data/whitelist.json
 ```
 
 ## 環境設定完成

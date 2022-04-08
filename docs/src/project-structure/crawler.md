@@ -19,3 +19,25 @@
 ## 寫入資料庫
 
 使用 pymongo 的函式庫，連結MongoDB把爬下來並整理完後的資料寫入。
+
+
+## 資料庫格式
+詳細說明可至[資料庫格式](./website/schema.md)查看。
+```js
+{
+  制別: String,
+  科目: {},
+  班級: String,
+  開班_選課人數: String,
+  任課教師: {},
+  上課日期_節次: [],
+  年級: String,
+  學校: {},
+  選別: String,
+  學分: String,
+  類別: String,
+  畢業班: String,
+  學期數: String,
+  說明: String,
+}
+```

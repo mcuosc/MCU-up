@@ -41,7 +41,7 @@
 * auth_middleware.js
 
 ## 資料庫
-採用 MongoDB 儲存爬蟲所抓取的課程資料、評論相關資料、暫存使用者登入狀態。並用以下的 schema model 裡的格式儲存資料進入資料庫：
+採用 MongoDB 儲存爬蟲所抓取的課程資料、評論相關資料、暫存使用者登入狀態。並用以下的 schema model 裡的格式儲存資料進入資料庫，關於詳細的說明可至[資料庫格式](./schema.md)查看。
 
 ### schema
 * course_model.js
