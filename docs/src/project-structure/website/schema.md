@@ -43,8 +43,8 @@
   userID : String,
   //字串型別，儲存科目名稱
   subject : String,
-  //字串型別，儲存教師姓名
-  teacher : String,
+  //陣列型別，儲存教師姓名
+  teacher : {},
   //字串型別，儲存系別
   name : String,
   //字串型別，儲存評論文字
