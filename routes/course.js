@@ -10,7 +10,7 @@ var courseMethod = new CourseMethod();
 var courseMiddleware = new CourseMiddleware();
 var checkAuth = new AuthMiddleware();
 
-router.get("/",courseMethod.getCoursesInfo);
+router.get("/",courseMethod.getCoursesInfo);//棄用？
 router.get("/async", courseMethod.printCourses);
 router.get("/json", cors(), courseMethod.getCoursesInfoJSON);
 //router.get("/logs", courseMethod.getCourseLog);

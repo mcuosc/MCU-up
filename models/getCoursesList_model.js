@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const mongoosePaginate = require("mongoose-paginate-v2");
+// const mongoosePaginate = require("mongoose-paginate-v2");
 
 const Courses = require('./schema/course_model');
 
@@ -32,19 +32,23 @@ module.exports = function getCourseList(req) {
     };
     let pageNumber = page;
     let nPerPage = 16;
-
     Courses.find(
       {
-        $and: [
+        $and:[
           {
             $or: [
-              { "科目.name": { $regex: search_regex } },
-              { "科目.id": { $regex: search_regex } },
-              { "任課教師.正課": { $regex: search_regex } },
-              { "任課教師.實習": { $regex: search_regex } },
+              {"course_name": { $regex: search_regex}},
+              {"course_id": { $regex: search_regex}},
+              {"class_id": { $regex: search_regex}},
+              {"teacher_list.teacher_name": { $regex: search_regex}},
+
+              // { "科目.name": { $regex: search_regex } },
+              // { "科目.id": { $regex: search_regex } },
+              // { "任課教師.正課": { $regex: search_regex } },
+              // { "任課教師.實習": { $regex: search_regex } },
             ]
           },
-          { "學校.校區": { $elemMatch: { $in: campus } } } //校區
+          { "campus": { $elemMatch: { $in: campus } } } //校區
         ],
       },
       (err, result) => {
@@ -52,42 +56,10 @@ module.exports = function getCourseList(req) {
           console.log(err);
           result.status = "Fail to find data.";
         }
+        // console.log(result);
         result = { queryCourses: { docs: result }, search: search_str, campus: JSON.stringify(campus) };
         resolve(result);
       }
-    )
-      .sort({})
-      .skip(pageNumber > 0 ? ((pageNumber - 1) * nPerPage) : 0)
-      .limit(nPerPage);
-
-
-    //console.log(options)
-    /*Course.paginate(
-      {
-          $and:[
-            {$or: [
-              { "科目.name": { $regex: search_regex } },
-              { "科目.id": { $regex: search_regex } },
-              { "任課教師.正課": { $regex: search_regex } },
-              { "任課教師.實習": { $regex: search_regex } },
-            ]},
-            { "學校.校區": {$elemMatch: { $in:campus } } } //校區
-          ],
-      },
-      options,
-      function (err, result) {
-        if (err) {
-          console.log(err);
-          reject(err);
-        } else {
-          // if (search.length>1) search = search.slice(1,-1)
-          
-          result = { queryCourses: result, search: search_str, campus:JSON.stringify(campus) };
-          console.log(result)
-          resolve(result);
-        }
-      }
     );
-    */
   });
 };
