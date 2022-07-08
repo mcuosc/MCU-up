@@ -1,11 +1,6 @@
 const mongoose = require("mongoose");
-// const mongoosePaginate = require("mongoose-paginate-v2");
 
 const Courses = require('./schema/course_model');
-
-/*function escapeRegex(text) {
-  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-};*/
 
 module.exports = function getCourseList(req) {
   let result = {};
@@ -41,11 +36,6 @@ module.exports = function getCourseList(req) {
               {"course_id": { $regex: search_regex}},
               {"class_id": { $regex: search_regex}},
               {"teacher_list.teacher_name": { $regex: search_regex}},
-
-              // { "科目.name": { $regex: search_regex } },
-              // { "科目.id": { $regex: search_regex } },
-              // { "任課教師.正課": { $regex: search_regex } },
-              // { "任課教師.實習": { $regex: search_regex } },
             ]
           },
           { "campus": { $elemMatch: { $in: campus } } } //校區
@@ -60,6 +50,9 @@ module.exports = function getCourseList(req) {
         result = { queryCourses: { docs: result }, search: search_str, campus: JSON.stringify(campus) };
         resolve(result);
       }
-    );
+    )
+    .sort({})
+    .skip(pageNumber > 0 ? ((pageNumber - 1) * nPerPage) : 0)
+    .limit(nPerPage);
   });
 };
