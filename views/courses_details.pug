@@ -8,6 +8,9 @@ block content
       button#leaveRating.btn.btn-primary.text-light.float-end(type='button' data-bs-toggle='modal' data-bs-target='#')
         | 登入以評分
     
+    //-.row TODO
+      p 課程代碼：#{} 學分數：#{} 是否為畢業班課程：#{} 校區：#{} 教師：#{} 學期：#{} 課程說明：#{}
+      
     h3 平均得分
     .row.text-center.justify-content-evenly
       if rating.length > 0
@@ -47,138 +50,12 @@ block content
         if !d.isHidden
           .card.mb-1
             include _partial/comment_card.pug
-          //-.card.mb-1
-            .card-body
-              .row
-                .col-8
-                  h5.card-title= d.name
-                .col  
-                  .float-end
-                    if d.userID == me
-                      a#editComment.text-light.btn.btn-secondary.me-1(href='#editModal' data-bs-target='#editModal' data-bs-toggle='modal') 編輯
-                      a#deleteComment.btn.btn-danger 刪除
-              .row
-                - let obj = {"豐富度": d.rateLearning, "作業量": d.rateHomework, "推薦度": d.rateRecommendation}
-                each val, key in obj
-                  .col-4
-                    .row
-                      .col-sm-12.col-md-4.text-center
-                        p= key
-                      .col-sm-12.col-md-8.text-center.text-md-start
-                        while val > 0
-                          i.fa.fa-star
-                          - val--
-              //-p.card-text= d.content
-              - const str = d.content;
-              - const sentences = str.split(/\r\n|\r|\n/gi);
-              each sentence in sentences
-                p.card-text= sentence
-                  
-              small.text-muted.float-end= `${d.modifiedAt.getFullYear()}-${d.modifiedAt.getMonth()+1}-${d.modifiedAt.getDate()}`
+
     else
       p 尚未有任何評論
       a(href='#myModal' data-bs-target='#myModal' data-bs-toggle='modal') 快來評分吧
 
   include _partial/comment_modals.pug
-  // The Modal
-  //-#myModal.modal
-    .modal-dialog
-      .modal-content
-        // Modal Header
-        form(action=`/courses/${teacherAndSubject.teacher}/${teacherAndSubject.subject}` method='post')
-          .modal-header
-            select.form-select(name="name" aria-label='Default select example')
-              if department
-                option(value=department selected)= department
-              option(value='銘傳大學') 匿名
-            button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
-            // Modal body
-          .modal-body
-            .mb-3
-              .form-text 評論發布後將無法修改顯示名稱(除非刪除)
-            - let name_list = ['豐富度','作業量','推薦度']
-            each name in name_list
-              .mb-3
-                label= name
-                .form-control
-                  -let i=1
-                  while i<=5
-                    .form-check.form-check-inline
-                      input.form-check-input(type='radio' name=name value=i required)
-                      label.form-check-label(for='inlineRadio1')
-                      - let j
-                      - for(j=0;j<i;j++)
-                        i.fa.fa-star
-                      - i++
-            //.form-group
-              label(for='hashtag') Tags
-              textarea#comment.form-control(rows='5' name='hashtag' placeholder="寫寫你的tag")
-            .form-group
-              label(for='comment') 評論:
-              textarea#comment.form-control(rows='5' name='comment' placeholder="寫寫你的感受（可選）")
-          // Modal footer
-          .modal-footer
-            button.btn.btn-primary.text-light(type='submit') 送出
-  
-  // The Modal
-  //-#editModal.modal
-    .modal-dialog
-      .modal-content
-        // Modal Header
-        form(action=`/courses/${teacherAndSubject.teacher}/${teacherAndSubject.subject}/edit` method='post')
-          .modal-header
-            select.form-select(name="name" disabled readonly)
-              if department
-                option(value=department selected)= department
-              option(value='銘傳大學') 匿名
-            button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
-            // Modal body
-          .modal-body
-            .mb-3
-              .form-text 如需變更該則顯示名稱，請刪除重發
-            //- let name_list = ['豐富度','作業量','推薦度']
-            each name in name_list
-              .mb-3
-                label= name
-                .form-control
-                  -let i=1
-                  while i<=5
-                    .form-check.form-check-inline
-                      input.form-check-input(type='radio' name=name value=i required)
-                      label.form-check-label(for='inlineRadio1')
-                      - let j
-                      - for(j=0;j<i;j++)
-                        i.fa.fa-star
-                      - i++
-            
-            //-each name in name_list
-              #star_list.mb-3
-                label=name
-                .form-control
-                  .stars
-                    label.rate
-                      input(type='radio' name=name value=1)
-                      i.far.fa-star.star.one-star
-                    label.rate
-                      input(type='radio' name=name value=2)
-                      i.far.fa-star.star.two-star
-                    label.rate
-                      input(type='radio' name=name value=3)
-                      i.far.fa-star.star.three-star
-                    label.rate
-                      input(type='radio' name=name value=4)
-                      i.far.fa-star.star.four-star
-                    label.rate
-                      input(type='radio' name=name value=5)
-                      i.far.fa-star.star.five-star
-            
-            .form-group
-              label(for='comment') 評論:
-              textarea#commentText.form-control(rows='5' name='comment' placeholder="寫寫你的感受（可選）")
-              //-input#userID(type='hidden' name='userID' value=me)
-          // Modal footer
-          .modal-footer
-            button#editSubmit.btn.btn-primary.text-light(type='submit') 送出
 
 block scripts
   script(src="//cdn.jsdelivr.net/npm/sweetalert2@10")

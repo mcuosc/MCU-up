@@ -31,47 +31,6 @@ block content
     .row
       #js-infinite-wrap
       #js-detective
-      //-each course in queryCourses.docs
-        //-.col-lg-4.col-6.mb-3
-        .col-sm-12.col-md-4.col-lg-3.mb-3
-          .card.focus
-            .card-body
-              a.stretched-link(href=`/courses/${course.任課教師[0]}/${course.科目.name}`)
-              h5.card-title= course.科目.name
-              each name in course.任課教師
-                h6.card-subtitle.mb-2= name
-              each cell in course.上課日期_節次
-                span.badge.bg-primary= cell.d
-                span.badge.bg-secondary= cell.t
-    //-.row
-      .col-sm-12
-        nav(aria-label='Page navigation')
-          ul.pagination.justify-content-center.flex-wrap
-            - 
-              var p = queryCourses.page
-              if(p > queryCourses.limit/2) p -= parseInt(queryCourses.limit/2)
-              else p = 1
-              if(p >= queryCourses.totalPages-queryCourses.limit/2) p -= parseInt(queryCourses.limit/2)-1
-            if queryCourses.hasPrevPage
-              li.page-item
-                a.page-link(href=`/courses?page=${queryCourses.prevPage}&search=${search}`) Previous
-            else
-              li.page-item.disabled
-                a.page-link(href="#" tabindex="-1" aria-disabled="true") Previous
-            while ( p <= queryCourses.limit || p < queryCourses.page + queryCourses.limit/2 ) && p <= queryCourses.totalPages
-              if p == queryCourses.page
-                li.page-item.active
-                  a.page-link= p
-              else if p > 0
-                li.page-item
-                  a.page-link(href=`/courses?page=${p}&search=${search}`)= p
-              - p++
-            if queryCourses.hasNextPage
-              li.page-item
-                a.page-link(href=`/courses?page=${queryCourses.nextPage}&search=${search}`) Next
-            else
-              li.page-item.disabled
-                a.page-link(href="#" tabindex="-1" aria-disabled="true") Next
 
 block scripts
   script(src="/js/scroll_load_courses.js")

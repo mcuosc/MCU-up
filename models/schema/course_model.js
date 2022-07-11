@@ -2,20 +2,21 @@ const mongoose = require("mongoose");
 const mongoosePaginate = require("mongoose-paginate-v2");
 
 const courseSchema = new mongoose.Schema({
-  制別: String,
-  科目: {},
-  班級: String,
-  開班_選課人數: String,
-  任課教師: {},
-  上課日期_節次: [],
-  年級: String,
-  學校: {},
-  選別: String,
-  學分: String,
-  類別: String,
-  畢業班: String,
-  學期數: String,
-  說明: String,
+  course_id: String,
+  course_name: String,
+  class_id: String,
+  teacher_list: [],
+  course_grade: String,
+  course_type: Number,
+  classroom: [],
+  campus: [],
+  semester: Number,
+  credits: Number,
+  special_type: String,
+  isgraduate: Boolean,
+  comments: String,
+  course_hash: String,
+  super_hash: String,
 });
 
 courseSchema.plugin(mongoosePaginate);
