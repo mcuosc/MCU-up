@@ -16,4 +16,4 @@ tempCodeRunnerFile.py
 ！data/bs5-scss/_variables.scss
 # Actions
 gh-pages*
-!.github/*
+!.github
