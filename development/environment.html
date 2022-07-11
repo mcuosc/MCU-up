@@ -1,0 +1,273 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>環境設置 - MCU-up Development Guide</title>
+                
+
+        <!-- Custom HTML head -->
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+                <link rel="icon" href="../favicon.svg">
+                        <link rel="shortcut icon" href="../favicon.png">
+                <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+                <link rel="stylesheet" href="../css/print.css" media="print">
+        
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+                <link rel="stylesheet" href="../fonts/fonts.css">
+        
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+            </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> 前言</a></li><li class="chapter-item expanded "><a href="../project-structure/index.html"><strong aria-hidden="true">2.</strong> 專案架構</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../project-structure/crawler.html"><strong aria-hidden="true">2.1.</strong> 爬蟲</a></li><li class="chapter-item expanded "><a href="../project-structure/website/index.html"><strong aria-hidden="true">2.2.</strong> 網站</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../project-structure/website/frontend.html"><strong aria-hidden="true">2.2.1.</strong> 前端</a></li><li class="chapter-item expanded "><a href="../project-structure/website/backend.html"><strong aria-hidden="true">2.2.2.</strong> 後端</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../development/index.html"><strong aria-hidden="true">3.</strong> 開發</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../development/environment.html" class="active"><strong aria-hidden="true">3.1.</strong> 環境設置</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.2.</strong> 推送更動</div></li></ol></li></ol>            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                                                <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                                            </div>
+
+                    <h1 class="menu-title">MCU-up Development Guide</h1>
+
+                    <div class="right-buttons">
+                                                <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                                                                        
+                    </div>
+                </div>
+
+                                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="環境設置"><a class="header" href="#環境設置">環境設置</a></h1>
+<h2 id="前置準備"><a class="header" href="#前置準備">前置準備</a></h2>
+<p>在開始之前，得先安裝下列套件：</p>
+<ul>
+<li><a href="https://git-scm.com">Git</a></li>
+<li><a href="https://nodejs.org/">Node.js</a></li>
+<li><a href="https://www.mongodb.com">MongoDB</a></li>
+</ul>
+<ul>
+<li>可選安裝
+<ul>
+<li>檢視 MongoDB 的 GUI：<a href="https://robomongo.org/">RoBo3T</a></li>
+<li>Python 虛擬環境: <a href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a></li>
+<li><a href="https://www.npmjs.com/package/nodemon">nodemon</a>
+<ul>
+<li>透過npm安裝 <code>npm install -g nodemon</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>接下來將以 linux shell 示範，windows 請採用 powershell 或其他相容終端機。</p>
+<h2 id="複製專案至本機"><a class="header" href="#複製專案至本機">複製專案至本機</a></h2>
+<pre><code class="language-shell=">git clone https://github.com/mcuosc/MCU-up-beta.git
+cd MCU-up-beta
+git checkout dev
+</code></pre>
+<h2 id="安裝相關函式庫"><a class="header" href="#安裝相關函式庫">安裝相關函式庫</a></h2>
+<h3 id="爬蟲"><a class="header" href="#爬蟲">爬蟲</a></h3>
+<p>這裡主要分成兩大安裝方式: 直接安裝與透過虛擬環境安裝。</p>
+<p>由於 python 本身預設是共用所有套件，為了避免產生相容性問題，所以通常會建立一個虛擬的乾淨環境，來進行安裝。</p>
+<h4 id="直接安裝"><a class="header" href="#直接安裝">直接安裝</a></h4>
+<pre><code class="language-sh">pip install -r requirements.txt
+</code></pre>
+<h4 id="透過虛擬環境安裝"><a class="header" href="#透過虛擬環境安裝">透過虛擬環境安裝</a></h4>
+<p>在此介紹兩個主流的虛擬環境，與其建立安裝方式。</p>
+<h5 id="venv-版本推薦"><a class="header" href="#venv-版本推薦">venv 版本(推薦)</a></h5>
+<p>venv 是 Python 官方內建的虛擬環境工具，可透過它方便地建立並使用虛擬環境。</p>
+<p>由於預設虛擬環境會建立在目前所在的資料夾，所以請先找個適合的位置，再打開終端機操作。</p>
+<p>建立與啟動環境:</p>
+<pre><code class="language-sh">#透過 venv 建立名為 mcu-up 的虛擬環境
+python -m venv mcu-up
+
+#啟動虛擬環境
+./mcu-up/bin/activate
+</code></pre>
+<p>接著就可以切換回原本專案資料夾進行套件安裝:</p>
+<pre><code class="language-sh">pip install -r requirements.txt
+</code></pre>
+<h5 id="miniconda-版本"><a class="header" href="#miniconda-版本">miniconda 版本</a></h5>
+<pre><code class="language-sh">#依序輸入以下指令:
+conda create --name mcu-up
+conda init {終端環境}   #(如果有多個teminal環境才需要輸入指定 輸入完重開teminal)
+conda activate
+pip install -r requirements.txt
+
+
+#--------------- 指令參考 -----------------
+#conda 基本指令
+conda create --name {環境名稱} python=3.7  #建立環境
+conda activate {環境名稱}   #啟動環境
+conda deactivate {環境名稱}  #關閉環境
+
+#pip 基本指令
+pip install {套件名稱}     #安裝套件
+pip install -r requirements.txt    #安裝txt中的所有套件
+#-----------------------------------------
+</code></pre>
+<h3 id="網站"><a class="header" href="#網站">網站</a></h3>
+<pre><code class="language-sh">npm install
+</code></pre>
+<h2 id="專案初始化"><a class="header" href="#專案初始化">專案初始化</a></h2>
+<p>在 clone 下來的資料夾：</p>
+<pre><code class="language-shell">python main.py
+cp .env.example .env
+sed -i 's/secret\=/secret=&quot;test&quot;/g' .env
+echo &quot;[]&quot; &gt; data/whitelist.json
+</code></pre>
+<h2 id="環境設定完成"><a class="header" href="#環境設定完成">環境設定完成</a></h2>
+<p>此時應可以正常啟動網站：</p>
+<pre><code class="language-sh">npm run
+</code></pre>
+<p>在 http://localhost:3000 上可以看到 MCU-up 即表示設定成功！</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                                                    <a rel="prev" href="../development/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+                        
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                                    <a rel="prev" href="../development/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+                            </nav>
+
+        </div>
+
+        
+        
+        
+                <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+        
+                <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+        
+    </body>
+</html>
