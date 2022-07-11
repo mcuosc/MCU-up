@@ -19,7 +19,7 @@ jobs:
         with:
           mdbook-version: '0.4.10'
           # mdbook-version: 'latest'
-      - run: cd docs
+
       - run: mdbook build
 
       - name: Deploy
