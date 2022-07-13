@@ -17,9 +17,8 @@ MCU-up
 
 1. clone本專案
 2. 執行main.py
-3. Google的token，需要新增.env檔案
-4. 執行npm install，有特別要額外安裝的module:body-parser跟nodemon(nodemon需要下npm install -g nodemon )
-5. 如要執行本專案在小黑下nodemon app.js(預設port端3000)
+3. Google的token，需要新增 .env 檔案
+4. 如要執行本專案在小黑下 `npm run dev` (For Development), `npm start` (For Production)。(Default PORT - 3000)
 
 ## SCREENSHOT
 ![](img/1.JPG)
