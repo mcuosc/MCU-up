@@ -18,7 +18,8 @@ MCU-up
 1. clone本專案
 2. 執行main.py
 3. Google的token，需要新增 .env 檔案
-4. 如要執行本專案在小黑下 `npm run dev` (For Development), `npm start` (For Production)。(Default PORT - 3000)
+4. 執行 `npm install` 以安裝所需套件。
+5. 如要執行本專案在小黑下 `npm run dev` (For Development), `npm start` (For Production)。(Default PORT - 3000)
 
 ## SCREENSHOT
 ![](img/1.JPG)
