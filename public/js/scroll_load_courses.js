@@ -19,37 +19,34 @@ function callback_infinite(entries) {
           if(res.length==0) observerInfinite.disconnect();
 
           // append html
+          let courseType = ["通識", "必修", "選修", "教育"];
           for(let doc of res){
-            let teachers = "";
+            let teachers = {main:"", sub:""};
             let sessions = "";
 
-            for(let [index, name] of Object.entries(doc.任課教師.正課)){
-              sessions = `<div class="float-end">`
-                            +`<span class="badge rounded-start bg-primary">${doc.上課日期_節次[index].d}</span>`
-                            +`<span class="badge rounded-end bg-secondary">${doc.上課日期_節次[index].t}</span>`
-                            +`</div>`;
-              teachers += `<h6 class="card-subtitle mb-2">${name}${sessions}</h6>`;
+            for(let [index, teacher] of Object.entries(doc.teacher_list)){
+              if (teacher.teacher_type === "main")
+                teachers.main += `${teachers.main==="" ? '':'、'}${teacher.teacher_name}`;
+              else if (teacher.teacher_type === "sub")
+                teachers.sub += `${teachers.sub==="" ? '':'、'}${teacher.teacher_name}`;
             }
 
-            if(doc.任課教師.實習.length > 0){
-                for(let [index, name] of Object.entries(doc.任課教師.實習)){
-                  sessions = `<div class="float-end">`
-                                +`<span class="badge rounded-start bg-primary">${doc.上課日期_節次[index].d}</span>`
-                                +`<span class="badge rounded-end bg-secondary">${doc.上課日期_節次[index].t}</span>`
-                                +`</div>`;
-                  teachers += `<h6 class="card-subtitle mb-2">${name} <small>實習</small>${sessions}</h6>`;
-                }
-            }
-
+          if(teachers.sub!=="") teachers.sub += "<small> 實習</small> ";
 
             let item = `
             <div class="col-sm-12 col-md-4 col-lg-3 mb-3">
               <div class="card focus h-100">
                 <div class="card-body">
-                  <a href="/courses/${doc.任課教師.正課[0]}/${doc.科目.name}" class="stretched-link"></a>
-                  <h6 class="card-subtitle mb-2 text-muted">${doc.學校.校區}</h6>
-                  <div class="h5 card-title">${ doc.科目.name }</div>
-                  ${teachers}
+                  <a href="/courses/${doc.teacher_list[0].teacher_name}/${doc.course_name}" class="stretched-link"></a>
+                  <div class="h5 card-title overflow-auto">
+                    ${ doc.course_name }
+                    <div class="float-end">
+                      <span class="badge bg-secondary rounded-start">${doc.campus}</span>
+                      <span class="badge bg-primary rounded-end">${courseType[doc.course_type]}</span>
+                    </div>
+                  </div>
+                  <h6 class="card-subtitle mb-2">${teachers.main}</h6>
+                  <h6 class="card-subtitle">${teachers.sub}</h6>
                 </div>
               </div>
             </div>`;

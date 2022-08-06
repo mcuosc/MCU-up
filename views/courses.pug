@@ -16,22 +16,22 @@ block content
         .col-12.col-sm-6.col-md-4.col-lg-3.mb-3
           .card.focus.h-100
             .card-body
-              p= `${course.學校.校區}`
-              a.stretched-link(href=`/courses/${course.任課教師.正課[0]}/${course.科目.name}`)
-              h5.card-title= course.科目.name
-              each name, index in course.任課教師.正課
-                h6.card-subtitle.mb-2= name
-                  .float-end
-                    span.badge.rounded-start.bg-primary= course.上課日期_節次[index].d
-                    span.badge.rounded-end.bg-secondary= course.上課日期_節次[index].t
-              if course.任課教師.實習.length > 0
-                each name, index in course.任課教師.實習
-                  h6.card-subtitle.mb-2= name
+              p= `${course.campus}`
+              a.stretched-link(href=`/courses/${course.teacher_list[0].teacher_name}/${course.course_name}`)
+              h5.card-title= course.course_name
+              each teacher, index in course.teacher_list
+                if teacher.teacher_type == "main"
+                  h6.card-subtitle.mb-2= teacher.teacher_name
+                    .float-end
+                      //- span.badge.rounded-start.bg-primary= course.上課日期_節次[index].d
+                      //- span.badge.rounded-end.bg-secondary= course.上課日期_節次[index].t
+                else if teacher.teacher_type == "sub"
+                  h6.card-subtitle.mb-2= teacher.teacher_name
                     | 
                     small 實習
                     .float-end
-                      span.badge.rounded-start.bg-primary= course.上課日期_節次[course.任課教師.正課.length+index].d
-                      span.badge.rounded-end.bg-secondary= course.上課日期_節次[course.任課教師.正課.length+index].t
+                      //- span.badge.rounded-start.bg-primary= course.上課日期_節次[course.任課教師.正課.length+index].d
+                      //- span.badge.rounded-end.bg-secondary= course.上課日期_節次[course.任課教師.正課.length+index].t
     .row
       .col-sm-12
         nav(aria-label='Page navigation')

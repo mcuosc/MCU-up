@@ -5,13 +5,7 @@ const updateComment = require("../models/updateComment_model");
 const getCourseList = require("../models/getCoursesList_model");
 const getCourse = require("../models/getCourses_model");
 const saveComment = require("../models/postComment_model");
-// const saveLog = require("../models/saveError_model");
-// const getLog = require("../models/getLog_model");
-// const getUser = require("../models/getUser_model");
-// const countDB = require("../models/dbCount_model");
 const departments = require("../data/class_ids_names.json");
-
-//const roles = require("../data/roles.json");
 
 const ObjectId = require("mongodb").ObjectID;
 
@@ -60,14 +54,7 @@ module.exports = class Courses {
   }
 
   getCoursesInfo(req, res) {
-    getCourseList(req).then(
-      (result) => {
-        res.render("courses", result);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+    res.redirect('/courses/async'); // compatible change
   }
 
   printCourses(req, res) {
@@ -77,6 +64,7 @@ module.exports = class Courses {
   getCoursesInfoJSON(req, res) {
     getCourseList(req).then(
       (result) => {
+        // console.log(result.queryCourses.docs);
         if(result.queryCourses.docs.length === 0) res.status(404).json();
         else res.json(result.queryCourses.docs);
       },
@@ -148,47 +136,4 @@ module.exports = class Courses {
       );
     // } else res.redirect("/auth/login");
   }
-  /*getCourseLog(req, res) {
-    let isLogin = typeof req.session.passport !== "undefined";
-
-
-    let check_admin = false;
-    //console.log(roles.admin, req.session.passport.user)
-    if (isLogin) {
-        getUser(req.session.passport.user)
-        .then((found) => {
-
-          if (found.length) check_admin = roles.admin.includes(found[0].profile.email.slice(0, 8));
-        })
-        .then(() => {
-          if (check_admin) {
-            countDB().then((dbs_counts) => {
-              getLog().then((results) => {
-                let itemsProcessed = 0;
-                if (results.length === 0)
-                  res.render("log", { data: [], dbs_counts: dbs_counts });
-                else {
-                  for (let i = 0; i < results.length; i++) {
-                    getUser(results[i].userID).then((found) => {
-                      itemsProcessed++;
-                      //let departmentID = found[0].profile.email.slice(2, 4);
-                      results[i].userID = found[0].profile.email//department_and_IDs[departmentID];
-                      if (itemsProcessed === results.length) {
-                        res.render("log", {
-                          data: results,
-                          dbs_counts: dbs_counts,
-                        });
-                      }
-                    });
-                  }
-                }
-              });
-            });
-          } else {
-            res.status(404).render('error');
-            //
-          }
-        });
-      } else res.redirect("/auth/login");
-  }*/
 };
