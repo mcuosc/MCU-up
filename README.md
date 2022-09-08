@@ -10,7 +10,7 @@ MCU-up
 2. [MongoDB](https://www.mongodb.com)
 
 建議工具：
-1. [RoBo3T](https://robomongo.org/)：還不錯看mongoDB的GUI程式
+1. [RoBo3T](https://robomongo.org/)：看 mongoDB 的 GUI 程式
 
 建立流程
 ---
